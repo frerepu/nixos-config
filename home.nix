@@ -4,6 +4,8 @@ let
     # You can add your own shell aliases here.
     ll = "ls -l";
     ".." = "cd ..";
+    c = "clear";
+    ls = "ls -lah --color=auto";
   };
   system = "x86_64-linux";
 in 
