@@ -31,8 +31,9 @@
           inherit pkgs;
           modules = [
             ./home.nix
+            {nixpkgs.config.allowUnfree = true;
             # Add zen-browser module directly here
-            { home.packages = [ zen-browser.packages.${system}.default ]; }
+             home.packages = [ zen-browser.packages.${system}.default ]; }
           ];
         };
       };
