@@ -19,6 +19,15 @@ in
     pciutils
     fastfetch
     kitty
+    wofi
+    hyprpaper
+    font-awesome
+    waybar
+#     (pkgs.waybar.overrideAttrs (oldAttrs: {
+#     mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+#   })
+# )
+
     (vscode-with-extensions.override {
     vscodeExtensions = with vscode-extensions; [
       bbenoist.nix

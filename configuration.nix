@@ -79,7 +79,9 @@
     #  thunderbird
     ];
   };
-  progrmas.hyprland.enable = true; 
+  programs.hyprland.enable = true; 
+  xwayland.enable = true;
+  
   # Install firefox.
   programs.firefox.enable = true;
 
