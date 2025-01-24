@@ -8,11 +8,11 @@ let
     ls = "ls -lah --color=auto";
   };
   system = "x86_64-linux";
-in 
+in
 {
   home.username = "faelterman";
   home.homeDirectory = "/home/faelterman";
-  home.stateVersion = "24.11"; 
+  home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
     git
@@ -23,11 +23,7 @@ in
     hyprpaper
     font-awesome
     waybar
-#     (pkgs.waybar.overrideAttrs (oldAttrs: {
-#     mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-#   })
-# )
-
+    zed-editor
     (vscode-with-extensions.override {
     vscodeExtensions = with vscode-extensions; [
       bbenoist.nix
@@ -76,7 +72,7 @@ in
     #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
-  
+
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell
@@ -112,7 +108,6 @@ in
     enable = true;
     shellAliases = myAliases;
   };
-
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

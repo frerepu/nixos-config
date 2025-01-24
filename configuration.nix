@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  
+
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -42,7 +42,7 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "be";
-    variant = "";
+    variant = "nodeadkeys";
   };
 
   # Configure console keymap
@@ -83,8 +83,8 @@
   # Hyprland
   programs.hyprland.enable = true;
   # xwayland.hidpi = true;
-  # xwayland.enable = true;
-  
+  #xwayland.enable = true;
+
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -98,7 +98,7 @@
     zsh
     wget
     curl
-    tailscale 
+    tailscale
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -122,7 +122,7 @@
     #   --advertise-exit-node
     #   --advertise-routes=172.16.60.0/24
     useRoutingFeatures = "both";
-    interfaceName = "userspace-networking"; 
+    interfaceName = "userspace-networking";
   };
 
   # Enable the OpenSSH daemon.
@@ -164,5 +164,5 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+
 }
