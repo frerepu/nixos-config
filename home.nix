@@ -16,7 +16,7 @@ in
 
   #xsession.numlock.enable = true;
   imports = [
-    ./starship
+    ./starship/starship.nix
   ];
   home.packages = with pkgs; [
     git
