@@ -19,9 +19,19 @@ in
     pciutils
     fastfetch
     kitty
+    starship
+    wev
     wofi
     hyprpaper
+    hyprlock
+    hypridle
+    hyprshot
+    libnotify
+    swaynotificationcenter
+    cascadia-code
     font-awesome
+    nwg-look
+    catppuccin
     waybar
     zed-editor
     (vscode-with-extensions.override {
@@ -92,6 +102,9 @@ in
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+
+
+
   programs.git ={
     enable = true;
     userName = "frerepu";
@@ -103,11 +116,18 @@ in
   programs.bash = {
     enable = true;
     shellAliases = myAliases;
+    bashrcExtra = ''
+      eval "$(starship init bash)"
+    '';
   };
+
   programs.zsh = {
     enable = true;
     shellAliases = myAliases;
   };
+
+  programs.starship.enable = true;
+
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
