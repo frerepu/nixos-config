@@ -14,12 +14,17 @@ in
   home.homeDirectory = "/home/faelterman";
   home.stateVersion = "24.11";
 
+  #xsession.numlock.enable = true;
+  imports = [
+    ./starship
+  ];
   home.packages = with pkgs; [
     git
     pciutils
+    teams-for-linux
     fastfetch
     kitty
-    starship
+    #starship
     wev
     wofi
     hyprpaper
@@ -126,8 +131,9 @@ in
     shellAliases = myAliases;
   };
 
-  programs.starship.enable = true;
 
+
+  catppuccin.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

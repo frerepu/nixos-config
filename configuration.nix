@@ -114,13 +114,6 @@
   services.tailscale = {
     enable = true;
     openFirewall = true;
-    # authKeyFile = config.age.secrets.vpn-preauth.path;
-    # extraUpFlags = [
-    #   #--login-server=https://your-instance"    if you use a non-default tailscale coordinator
-    #   #--accept-dns=true    if its' a server you prolly dont need magicdns
-    #   --ssh
-    #   --advertise-exit-node
-    #   --advertise-routes=172.16.60.0/24
     useRoutingFeatures = "both";
     interfaceName = "userspace-networking";
   };
