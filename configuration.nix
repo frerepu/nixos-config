@@ -29,8 +29,20 @@
   # Set your time zone.
   time.timeZone = "Europe/Brussels";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "nl_BE.UTF-8";
+    # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "nl_BE.UTF-8";
+    LC_IDENTIFICATION = "nl_BE.UTF-8";
+    LC_MEASUREMENT = "nl_BE.UTF-8";
+    LC_MONETARY = "nl_BE.UTF-8";
+    LC_NAME = "nl_BE.UTF-8";
+    LC_NUMERIC = "nl_BE.UTF-8";
+    LC_PAPER = "nl_BE.UTF-8";
+    LC_TELEPHONE = "nl_BE.UTF-8";
+    LC_TIME = "nl_BE.UTF-8";
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -99,7 +111,26 @@
     wget
     curl
     tailscale
+    git
   ];
+
+    # Before 25.05 (24.05 or earlier)
+  fonts.packages = with pkgs; [
+  cascadia-code
+  font-awesome
+  #nerdfonts
+  (nerdfonts.override { fonts = [ "JetBrainsMono" "DroidSansMono" ]; })
+
+];
+
+# After 25.05 (Not fully completed and officially released yet)
+#fonts.packages = with pkgs; [
+#  nerd-fonts.fira-code
+#  nerd-fonts.droid-sans-mono
+#];
+
+
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -18,13 +18,17 @@ in
   imports = [
     ./starship/starship.nix
   ];
+
+
+
+
   home.packages = with pkgs; [
     git
     pciutils
     teams-for-linux
     fastfetch
     kitty
-    #starship
+    chromium
     wev
     wofi
     hyprpaper
@@ -33,8 +37,6 @@ in
     hyprshot
     libnotify
     swaynotificationcenter
-    cascadia-code
-    font-awesome
     nwg-look
     catppuccin
     waybar
@@ -134,6 +136,37 @@ in
 
 
   catppuccin.enable = true;
+
+  home.pointerCursor = {
+     gtk.enable = true;
+     # x11.enable = true;
+     package = pkgs.bibata-cursors;
+     name = "Bibata-Modern-Classic";
+     size = 16;
+   };
+
+   gtk = {
+     enable = true;
+
+     theme = {
+       package = pkgs.flat-remix-gtk;
+       name = "Flat-Remix-GTK-Grey-Darkest";
+     };
+
+     iconTheme = {
+       package = pkgs.gnome.adwaita-icon-theme;
+       name = "Adwaita";
+     };
+
+     font = {
+       name = "JetBrainsMono";
+       size = 11;
+     };
+   };
+
+
+
+
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
