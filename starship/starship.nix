@@ -7,10 +7,7 @@
 # ║╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝     ║
 # ╚════════════════════════════════════════════════════════════╝
 
-{
-  pkgs,
-  ...
-}: {
+{pkgs,...}: {
   programs.starship =
     let
       flavour = "mocha";
@@ -19,10 +16,7 @@
     {
       enable = true;
       settings = (with builtins; fromTOML (readFile ./starship.toml)) // {
-           time = {
-             disabled = false;
-             format = "[$time]($style) ";
-           };
+
           ## more settings
       };
     };
