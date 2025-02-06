@@ -135,7 +135,7 @@ in
 
 
 
-  catppuccin.enable = true;
+  # catppuccin.enable = true;
 
   home.pointerCursor = {
      gtk.enable = true;
@@ -145,23 +145,39 @@ in
      size = 16;
    };
 
-   gtk = {
-     enable = true;
+  gtk = {
+    enable = true;
 
-     theme = {
-       package = pkgs.flat-remix-gtk;
-       name = "Flat-Remix-GTK-Grey-Darkest";
-     };
+    # theme = {
+    # package = pkgs.flat-remix-gtk;
+    # name = "Flat-Remix-GTK-Grey-Darkest";
+    # };
 
-     iconTheme = {
-       package = pkgs.gnome.adwaita-icon-theme;
-       name = "Adwaita";
-     };
+    # iconTheme = {
+    # package = pkgs.gnome.adwaita-icon-theme;
+    # name = "Adwaita";
+    # };
 
-     font = {
-       name = "JetBrainsMono";
-       size = 11;
-     };
+    font = {
+    name = "JetBrainsMono";
+    size = 11;
+    };
+
+    catppuccin = {
+       enable = true;
+
+    icon = {
+        enable = true;
+    };
+    # “standard”, “compact”
+    size = "standard";
+    # “black”, “rimless”, “normal”
+    tweaks = ["normal"];
+    };
+
+
+
+
    };
 
 

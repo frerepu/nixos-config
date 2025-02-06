@@ -173,9 +173,11 @@ format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
 
 [time]
 disabled = false
-time_format = "%R"
-style = "bg:peach"
-format = '[[  $time ](fg:mantle bg:purple)]($style)'
+symbol = "🕙"
+time_format = "%T"
+style = "bg:purple"
+# format = '[[  $time ](fg:mantle bg:purple)]($style)'
+format = '🕙[[ $time \]]($style) '
 
 [line_break]
 disabled = false
