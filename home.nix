@@ -32,11 +32,19 @@ in
     wev
     wofi
     hyprpaper
-    hyprlock
+    hyprpicker
     hypridle
+    hyprlock
+    hyprsunset
+    hyprpolkitagent
+    #hyprsysteminfo
+    hyprcursor
     hyprshot
+    hyprls
     libnotify
     swaynotificationcenter
+    wlogout
+    swayosd
     nwg-look
     catppuccin
     waybar
@@ -58,6 +66,9 @@ in
       }
     ];
   })
+    webcord
+    fractal
+    clipse
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -70,7 +81,7 @@ in
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    oh-my-posh
+
   ];
 
 
@@ -110,8 +121,6 @@ in
     # EDITOR = "emacs";
   };
 
-
-
   programs.git ={
     enable = true;
     userName = "frerepu";
@@ -120,6 +129,7 @@ in
       init.defaultBranch = "main";
     };
   };
+
   programs.bash = {
     enable = true;
     shellAliases = myAliases;
@@ -133,52 +143,32 @@ in
     shellAliases = myAliases;
   };
 
-
-
-  # catppuccin.enable = true;
-
   home.pointerCursor = {
      gtk.enable = true;
-     # x11.enable = true;
+     x11.enable = true;
      package = pkgs.bibata-cursors;
-     name = "Bibata-Modern-Classic";
-     size = 16;
+     name = "Bibata-Modern-Ice";
+     size = 10;
    };
 
   gtk = {
     enable = true;
-
-    # theme = {
-    # package = pkgs.flat-remix-gtk;
-    # name = "Flat-Remix-GTK-Grey-Darkest";
-    # };
-
-    # iconTheme = {
-    # package = pkgs.gnome.adwaita-icon-theme;
-    # name = "Adwaita";
-    # };
-
     font = {
-    name = "JetBrainsMono";
-    size = 11;
+        name = "JetBrainsMono";
+        size = 11;
     };
+  };
 
-    catppuccin = {
-       enable = true;
+  catppuccin = {
+    enable = true;
+    gtk = {
+      enable = true;
 
-    icon = {
-        enable = true;
+      icon.enable = true;
+      size = "standard";
+      tweaks = ["normal"];
     };
-    # “standard”, “compact”
-    size = "standard";
-    # “black”, “rimless”, “normal”
-    tweaks = ["normal"];
-    };
-
-
-
-
-   };
+  };
 
 
 
