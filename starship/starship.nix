@@ -18,7 +18,7 @@
     in
     {
       enable = true;
-      settings = (with builtins; fromTOML (readFile ./tokyo-night.toml)) // {
+      settings = (with builtins; fromTOML (readFile ./starship.toml)) // {
            time = {
              disabled = false;
              format = "[$time]($style) ";
