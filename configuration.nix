@@ -50,6 +50,8 @@
       sddm = {
         enable = true;
         wayland.enable = true;
+        theme = "catppuccin-mocha";
+        package = pkgs.kdePackages.sddm;
       };
       defaultSession = "hyprland";
     };
@@ -129,6 +131,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    (catppuccin-sddm.override {
+    flavor = "mocha";
+    font = "JetBrainsMono"; # Since you're using this font in your GTK config
+    fontSize = "11";        # Matching your GTK font size
+    loginBackground = true;
+    })
     xdg-desktop-portal-hyprland
     xdg-utils
     iw
@@ -137,6 +145,7 @@
     curl
     tailscale
     git
+    kdePackages.sddm
   ];
   environment.pathsToLink = [ "/share/wayland-sessions" ];
 
