@@ -6,29 +6,30 @@
   networking.hostName = "nixos";
   networking.interfaces.enp4s0f0.useDHCP = true;
 
-  # Desktop-specific services
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      gdm.enable = false;
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-        theme = "catppuccin-mocha";
-        package = pkgs.kdePackages.sddm;
-      };
-      defaultSession = "hyprland";
-    };
 
-    xkb = {
-      layout = "be";
-      variant = "nodeadkeys";
-    };
+services.flatpak.enable = true;
+  # Desktop-specific services
+services.xserver = {
+  enable = true;
+  xkb = {
+    layout = "be";      # Changed from layout to xkb.layout
+    options = "";       # Changed from xkbOptions to xkb.options
+  };
+};
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    theme = "catppuccin-mocha";
+    package = pkgs.kdePackages.sddm;
+  };
+  services.displayManager = {
+    defaultSession = "hyprland";
+    sessionPackages = [ pkgs.hyprland ];
   };
 
   # Desktop-specific hardware configuration
   console.keyMap = "be-latin1";
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

@@ -54,7 +54,8 @@
   fonts.packages = with pkgs; [
     cascadia-code
     font-awesome
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "DroidSansMono" ]; })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.droid-sans-mono
   ];
 
   # Base firewall configuration

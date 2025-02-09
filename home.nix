@@ -143,9 +143,9 @@ in
   programs.bash = {
     enable = true;
     shellAliases = myAliases;
-    bashrcExtra = ''
-      eval "$(starship init bash)"
-    '';
+    # bashrcExtra = ''
+    #   eval "$(starship init bash)"
+    # '';
   };
 
   programs.zsh = {
@@ -169,16 +169,14 @@ in
     };
   };
 
-  catppuccin = {
-    enable = true;
-    gtk = {
+  catppuccin.enable = true;
+  catppuccin.gtk = {
       enable = true;
-
       icon.enable = true;
       size = "standard";
       tweaks = ["normal"];
-    };
   };
+  
 
 
 
