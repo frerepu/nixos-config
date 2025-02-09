@@ -1,20 +1,18 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# and in the NixOS manual (accessible by running 'nixos-help').
 
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -29,7 +27,7 @@
   # Set your time zone.
   time.timeZone = "Europe/Brussels";
 
-    # Select internationalisation properties.
+  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -45,16 +43,22 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      gdm.enable = false;
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+      defaultSession = "hyprland";
+    };
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "be";
-    variant = "nodeadkeys";
+    # Configure keymap in X11
+    xkb = {
+      layout = "be";
+      variant = "nodeadkeys";
+    };
   };
 
   # Configure console keymap
@@ -82,21 +86,40 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.faelterman = {
     isNormalUser = true;
     description = "Frederic Aelterman";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
   # Hyprland
-  programs.hyprland.enable = true;
-  # xwayland.hidpi = true;
-  #xwayland.enable = true;
-
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  security.pam.services.hyprlock = {};
+  xdg.portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-gtk
+      ];
+      config.common.default = "*";
+  };
+  # Add systemd targets for proper session management
+  systemd.user.targets.hyprland-session = {
+    description = "Hyprland compositor session";
+    documentation = ["man:systemd.special(7)"];
+    bindsTo = ["graphical-session.target"];
+    wants = ["graphical-session-pre.target"];
+    after = ["graphical-session-pre.target"];
+  };
+    # Ensure proper session cleanup
+  services.xserver.displayManager.sessionPackages = [ pkgs.hyprland ];
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -106,6 +129,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    xdg-desktop-portal-hyprland
+    xdg-utils
     iw
     zsh
     wget
@@ -113,24 +138,27 @@
     tailscale
     git
   ];
+  environment.pathsToLink = [ "/share/wayland-sessions" ];
 
-    # Before 25.05 (24.05 or earlier)
+  # Ensure XDG paths are set up correctly
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    GDK_BACKEND = "wayland";
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+  };
+
+  # Before 25.05 (24.05 or earlier)
   fonts.packages = with pkgs; [
-  cascadia-code
-  font-awesome
-  #nerdfonts
-  (nerdfonts.override { fonts = [ "JetBrainsMono" "DroidSansMono" ]; })
-
-];
-
-# After 25.05 (Not fully completed and officially released yet)
-#fonts.packages = with pkgs; [
-#  nerd-fonts.fira-code
-#  nerd-fonts.droid-sans-mono
-#];
-
-
-
+    cascadia-code
+    font-awesome
+    #nerdfonts
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "DroidSansMono" ]; })
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -159,11 +187,6 @@
   networking.interfaces.enp4s0f0.useDHCP = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-  # ...
   networking.firewall = {
     # enable the firewall
     enable = true;
@@ -178,15 +201,23 @@
     allowedTCPPorts = [ 22 ];
   };
 
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # on your system were taken. It's perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  system.activationScripts = {
+    sddm-session = {
+      text = ''
+        mkdir -p /usr/share/wayland-sessions
+        ln -sfn ${pkgs.hyprland}/share/wayland-sessions/hyprland.desktop /usr/share/wayland-sessions/
+      '';
+      deps = [];
+    };
+  };
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
