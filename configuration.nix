@@ -134,7 +134,7 @@
     (catppuccin-sddm.override {
     flavor = "mocha";
     font = "JetBrainsMono"; # Since you're using this font in your GTK config
-    fontSize = "11";        # Matching your GTK font size
+    fontSize = "15";        # Matching your GTK font size
     loginBackground = true;
     })
     xdg-desktop-portal-hyprland
