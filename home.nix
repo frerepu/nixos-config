@@ -58,6 +58,7 @@ in
       esbenp.prettier-vscode
       ms-python.python
       tailscale.vscode-tailscale
+      catppuccin.catppuccin-vsc
       ms-azuretools.vscode-docker
       ms-vscode-remote.remote-ssh
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
@@ -70,7 +71,8 @@ in
     ];
   })
     webcord
-    fractal
+    mumble
+    element-desktop
     clipse
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
