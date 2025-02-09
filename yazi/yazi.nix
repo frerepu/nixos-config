@@ -1,56 +1,40 @@
-{pkgs, ...}: let
-	yazi-plugins = pkgs.fetchFromGitHub {
-		owner = "yazi-rs";
-		repo = "plugins";
-		rev = "...";
-		hash = "sha256-...";
-	};
-in {
-	programs.yazi = {
-		enable = true;
-		enableZshIntegration = true;
-		shellWrapperName = "y";
+{ pkgs, lib, ... }:
+{
+  programs.yazi = {
+    enable = true;
 
-		settings = {
-			manager = {
-				show_hidden = true;
-			};
-			preview = {
-				max_width = 1000;
-				max_height = 1000;
-			};
-		};
+    settings = {
+      ratio = [ 1 4 6 ];
+      sort_by = "alphabetical";
+      sort_sensitive = false;
+      sort_reverse = false;
+      sort_dir_first = true;
+      sort_translit = false;
+      linemode = "none";
+      show_hidden = false;
+      show_symlink = true;
+      scrolloff = 5;
+      mouse_events = [ "click" "scroll" ];
+    };
+  };
 
-		plugins = {
-			chmod = "${yazi-plugins}/chmod.yazi";
-			full-border = "${yazi-plugins}/full-border.yazi";
-			max-preview = "${yazi-plugins}/max-preview.yazi";
-			starship = pkgs.fetchFromGitHub {
-				owner = "Rolv-Apneseth";
-				repo = "starship.yazi";
-				rev = "...";
-				sha256 = "sha256-...";
-			};
-		};
+  # Explicitly set our theme configuration with high priority
+  xdg.configFile."yazi/theme.toml" = lib.mkForce {
+    text = ''
+      # Yazi theme configuration
+      [manager]
+      cwd = { fg = "#94e2d5" }
 
-		initLua = ''
-			require("full-border"):setup()
-			require("starship"):setup()
-		'';
+      hovered = { fg = "#1e1e2e", bg = "#cba6f7" }
+      preview_hovered = { fg = "#1e1e2e", bg = "#cdd6f4" }
 
-		keymap = {
-			manager.prepend_keymap = [
-				{
-					on = "T";
-					run = "plugin max-preview";
-					desc = "Maximize or restore the preview pane";
-				}
-				{
-					on = ["c" "m"];
-					run = "plugin chmod";
-					desc = "Chmod on selected files";
-				}
-			];
-		};
-	};
+      # ... rest of your theme configuration in TOML format
+    '';
+  };
+
+  # Basic keymap configuration
+  xdg.configFile."yazi/keymap.toml".text = ''
+    [manager]
+    # Add your keybindings here if needed
+  '';
 }
