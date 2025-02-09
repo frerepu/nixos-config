@@ -28,6 +28,9 @@ in
     teams-for-linux
     fastfetch
     kitty
+    xfce.thunar
+    xfce.thunar-archive-plugin  # Optional: for archive handling
+    xfce.thunar-volman         # Optional: for removable device management
     chromium
     wev
     wofi
