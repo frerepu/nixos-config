@@ -17,6 +17,7 @@ in
   #xsession.numlock.enable = true;
   imports = [
     ./starship/starship.nix
+    ./yazi/yazi.nix
   ];
 
 
