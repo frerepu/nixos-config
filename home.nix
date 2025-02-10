@@ -59,6 +59,8 @@ in
       bbenoist.nix
       esbenp.prettier-vscode
       ms-python.python
+      github.copilot
+      github.copilot-chat
       tailscale.vscode-tailscale
       catppuccin.catppuccin-vsc
       ms-azuretools.vscode-docker
@@ -78,7 +80,6 @@ in
     clipse
     wl-clipboard
 
-    rbw
 
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
