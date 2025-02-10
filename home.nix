@@ -18,6 +18,7 @@ in
   imports = [
     ./modules/starship/starship.nix
     ./modules/yazi.nix
+    ./modules/rbw.nix
   ];
 
 
@@ -76,6 +77,8 @@ in
     element-desktop
     clipse
     wl-clipboard
+
+    rbw
 
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -139,13 +142,14 @@ in
     };
   };
 
+  #programs.kitty.enable = true; 
 
   programs.bash = {
     enable = true;
     shellAliases = myAliases;
-    # bashrcExtra = ''
-    #   eval "$(starship init bash)"
-    # '';
+      bashrcExtra = ''
+        eval "$(starship init bash)"
+     '';
   };
 
   programs.zsh = {
@@ -178,8 +182,14 @@ in
   };
   
 
-
-
+  xdg.desktopEntries.yazi = {
+    name = "Yazi";
+    comment = "Terminal file manager";
+    terminal = false;  # Changed this to false
+    exec = "kitty -e yazi";
+    categories = [ "System" "FileManager" ];
+    type = "Application";
+  };
 
 
   # Let Home Manager install and manage itself.

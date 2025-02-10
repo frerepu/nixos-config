@@ -2,7 +2,6 @@
 {
   programs.yazi = {
     enable = true;
-
     settings = {
       ratio = [ 1 4 6 ];
       sort_by = "alphabetical";
@@ -18,21 +17,28 @@
     };
   };
 
-  # Explicitly set our theme configuration with high priority
+  # Create yazi.toml with correct TOML syntax
+  xdg.configFile."yazi/yazi.toml".text = ''
+    [opener]
+    text = [
+      { exec = '''kitty -e nvim "$@"''', block = true }
+    ]
+
+    [preview]
+    terminal = "kitty"
+  '';
+
+  # Theme configuration remains the same
   xdg.configFile."yazi/theme.toml" = lib.mkForce {
     text = ''
       # Yazi theme configuration
       [manager]
       cwd = { fg = "#94e2d5" }
-
       hovered = { fg = "#1e1e2e", bg = "#cba6f7" }
       preview_hovered = { fg = "#1e1e2e", bg = "#cdd6f4" }
-
-      # ... rest of your theme configuration in TOML format
     '';
   };
 
-  # Basic keymap configuration
   xdg.configFile."yazi/keymap.toml".text = ''
     [manager]
     # Add your keybindings here if needed

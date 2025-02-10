@@ -7,15 +7,15 @@
   networking.interfaces.enp4s0f0.useDHCP = true;
 
 
-services.flatpak.enable = true;
+  services.flatpak.enable = true;
   # Desktop-specific services
-services.xserver = {
-  enable = true;
-  xkb = {
-    layout = "be";      # Changed from layout to xkb.layout
-    options = "";       # Changed from xkbOptions to xkb.options
+  services.xserver = {
+    enable = true;
+    xkb = {
+      layout = "be";      # Changed from layout to xkb.layout
+      options = "";       # Changed from xkbOptions to xkb.options
+    };
   };
-};
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
@@ -76,6 +76,9 @@ services.xserver = {
     QT_QPA_PLATFORM = "wayland";
     SDL_VIDEODRIVER = "wayland";
     _JAVA_AWT_WM_NONREPARENTING = "1";
+    EDITOR = "Visual Studio Code";
+    BROWSER = "zen browser";
+    TERMINAL = "kitty";
   };
 
   environment.pathsToLink = [ "/share/wayland-sessions" ];
