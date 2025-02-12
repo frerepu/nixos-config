@@ -5,7 +5,16 @@
 
   networking.hostName = "nixos";
   networking.interfaces.enp4s0f0.useDHCP = true;
-
+  
+  environment.systemPackages = [(
+    pkgs.catppuccin-sddm.override {
+      flavor = "mocha";
+      font  = "cascadia-code";
+      fontSize = "22";
+      background = "/home/faelterman/.config/background/wallhaven-8x16mo.png";
+      loginBackground = true;
+    }
+  )];
 
   services.flatpak.enable = true;
   # Desktop-specific services
