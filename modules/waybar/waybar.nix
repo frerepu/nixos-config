@@ -4,6 +4,10 @@
   # status bar for hyprland/wayland
   programs.waybar = {
     enable = true;
+    style = ''
+      ${builtins.readFile ./colors.css}
+      ${builtins.readFile ./style.css}
+    '';    
     settings = [    
     {
         layer = "top"; # Waybar at top layer
@@ -33,29 +37,29 @@
           "custom/power"
         ];
 
-        hyprland = {
-            workspaces = {
-                on-click = "activate";
-                format = "{name}:{icon}";
-                format-icons = {
-                    urgent = "";
-                    active = "";
-                    default = "";
-                };
-                sort-by-number = true;
-            };
-            mode = {
-                format = "<span style=\"italic\">{}</span>";
-            };
-            scratchpad = {
-                format = "{icon} {count}";
-                show-empty = false;
-                format-icons = [ "" "" ];
-                tooltip = true;
-                tooltip-format = "{app}: {title}";
-            };
+        "hyprland/workspaces" = {
+          on-click = "activate";
+          format = "{name}:{icon}";
+          format-icons = {
+            urgent = "";
+            active = "";
+            default = "";
+          };
+          sort-by-number = true;
         };
 
+        "hyprland/mode" = {
+          format = "<span style=\"italic\">{}</span>";
+        };
+
+        "hyprland/scratchpad" = {
+          format = "{icon} {count}";
+          show-empty = false;
+          format-icons = [ "" "" ];
+          tooltip = true;
+          tooltip-format = "{app}: {title}";
+        };
+        
         keyboard-state = {
             numlock = true;
             capslock = true;
@@ -199,27 +203,26 @@
             on-click = "pavucontrol";
         };
 
-        custom = {
-        #     media = {
-        #         format = "{icon} {text}";
-        #         return-type = "json";
-        #         max-length = 40;
-        #         format-icons = {
-        #             spotify = "";
-        #             default = "🎜";
-        #         };
-        #         escape = true;
-        #         exec = "${config.home.homeDirectory}/.config/waybar/mediaplayer.py 2> /dev/null"; # Script in resources folder
-        #         # exec = "${config.home.homeDirectory}/.config/waybar/mediaplayer.py --player spotify 2> /dev/null"; # Filter player based on name
-        #     };
-            power = {
-                format = "⏻ ";
-                on-click = "exec wlogout";
-                tooltip = "logout menu";
+        "custom/media" = {
+          format = "{icon} {text}";
+          return-type = "json";
+          max-length = 40;
+          format-icons = {
+            spotify = "";
+            default = "🎜";
             };
+          escape = true;
+          # exec = "${config.home.homeDirectory}/.config/waybar/mediaplayer.py 2> /dev/null"; # Script in resources folder
+          # exec = "${config.home.homeDirectory}/.config/waybar/mediaplayer.py --player spotify 2> /dev/null"; # Filter player based on name
         };
+        "custom/power" = {
+          format = "⏻ ";
+          on-click = "exec wlogout";
+          tooltip = "logout menu";
+        };
+        
      }
     ];
-    style = builtins.readFile ./style.css;
+
   };
 }
