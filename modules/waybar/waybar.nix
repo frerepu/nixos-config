@@ -15,22 +15,22 @@
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
         modules-right = [
-            "mpd"
-            "idle_inhibitor"
-            "pulseaudio"
-            "network"
-            "power-profiles-daemon"
-            "cpu"
-            "memory"
-            "temperature"
-            "backlight"
-            "keyboard-state"
-            "hyprland/language"
-            "battery"
-            "battery#bat2"
-            "clock"
-            "tray"
-            "custom/power"
+          "mpd"
+          "idle_inhibitor"
+          "pulseaudio"
+          "network"
+          "power-profiles-daemon"
+          "cpu"
+          "memory"
+          "temperature"
+          "backlight"
+          "keyboard-state"
+          "hyprland/language"
+          "battery"
+          "battery#bat2"
+          "clock"
+          "tray"
+          "custom/power"
         ];
 
         hyprland = {
@@ -200,25 +200,26 @@
         };
 
         custom = {
-            media = {
-                format = "{icon} {text}";
-                return-type = "json";
-                max-length = 40;
-                format-icons = {
-                    spotify = "";
-                    default = "🎜";
-                };
-                escape = true;
-                exec = "${config.home.homeDirectory}/.config/waybar/mediaplayer.py 2> /dev/null"; # Script in resources folder
-                # exec = "${config.home.homeDirectory}/.config/waybar/mediaplayer.py --player spotify 2> /dev/null"; # Filter player based on name
-            };
+        #     media = {
+        #         format = "{icon} {text}";
+        #         return-type = "json";
+        #         max-length = 40;
+        #         format-icons = {
+        #             spotify = "";
+        #             default = "🎜";
+        #         };
+        #         escape = true;
+        #         exec = "${config.home.homeDirectory}/.config/waybar/mediaplayer.py 2> /dev/null"; # Script in resources folder
+        #         # exec = "${config.home.homeDirectory}/.config/waybar/mediaplayer.py --player spotify 2> /dev/null"; # Filter player based on name
+        #     };
             power = {
                 format = "⏻ ";
                 on-click = "exec wlogout";
                 tooltip = "logout menu";
-               
             };
         };
-```  }
+     }
     ];
     style = builtins.readFile ./style.css;
+  };
+}
