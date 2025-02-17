@@ -19,7 +19,7 @@ in
     ./modules/starship/starship.nix
     ./modules/yazi.nix
     ./modules/rbw.nix
-    .modules/waybar/waybar.nix
+    ./modules/waybar/waybar.nix
   ];
 
 
@@ -54,7 +54,7 @@ in
     swayosd
     nwg-look
     catppuccin
-    waybar
+    # waybar
     zed-editor
     (vscode-with-extensions.override {
     vscodeExtensions = with vscode-extensions; [
