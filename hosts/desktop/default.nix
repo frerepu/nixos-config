@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
   imports = [
-     ./hardware-configuration.nix  # Machine-specific hardware config
+     ./hardware.nix  # Machine-specific hardware config
   ];
 
   networking.hostName = "nixos";
