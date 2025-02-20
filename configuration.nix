@@ -5,6 +5,6 @@
     #./hardware-configuration.nix  # Keep using the old location temporarily
     ./hosts/common/default.nix
     ./hosts/desktop/default.nix
-    3./hosts/desktop/hardware.nix
+    #./hosts/desktop/hardware.nix
   ];
 }
