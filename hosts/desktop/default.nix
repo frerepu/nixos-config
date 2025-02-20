@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
   imports = [
-    # ./hardware.nix  # Machine-specific hardware config
+     ./../hardware.nix  # Machine-specific hardware config
   ];
 
   networking.hostName = "nixos";
@@ -86,7 +86,7 @@
     SDL_VIDEODRIVER = "wayland";
     _JAVA_AWT_WM_NONREPARENTING = "1";
     EDITOR = "Visual Studio Code";
-    BROWSER = "zen browser";
+    BROWSER = "Zen Browser";
     TERMINAL = "kitty";
   };
 
