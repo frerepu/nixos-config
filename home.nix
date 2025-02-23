@@ -6,7 +6,7 @@ let
     ".." = "cd ..";
     c = "clear";
     ls = "ls -lah --color=auto";
-    cat = "bat"
+    cat = "bat";
   };
   system = "x86_64-linux";
 in
