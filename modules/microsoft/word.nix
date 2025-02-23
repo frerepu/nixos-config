@@ -14,7 +14,7 @@
 
   # Create desktop entry for Wofi integration
   xdg.desktopEntries.word = {
-    name = "Microsoft Word";
+    name = "Word";
     genericName = "Word Processor";
     exec = "word";
     icon = "word";
@@ -24,7 +24,7 @@
 
   # Add icon for the application
   home.file.".local/share/icons/word.png".source = pkgs.fetchurl {
-    url = "https://www.microsoft.com/favicon.icon";  # You might want to replace this with a better Word-specific icon URL
-    sha256 = "08fdqsw9hnimiwcns4a8sck3jqyi0p33a2806i04w60nfx4azkch"; # You'll need to replace this with the actual hash after downloading the icon
+    url = "https://word.office.com/pwa/icon.png";
+    sha256 = "08a52gnj4hxnza0s2qc0cd7am7dwaa1zvmpg1qc74wsz644p7cmq"; # Run nix-prefetch-url to get the hash
   };
 }
