@@ -155,10 +155,7 @@ in
      '';
   };
 
-  programs.zsh = {
-    enable = true;
-    shellAliases = myAliases;
-  };
+
 
   home.pointerCursor = {
      gtk.enable = true;
