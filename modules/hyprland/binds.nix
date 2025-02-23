@@ -1,7 +1,6 @@
 {
   wayland.windowManager.hyprland.settings = {
     bind = [
-      "$mainMod = SUPER" # Sets "Windows" key as main modifier
 
       "$mainMod, Return, exec, $terminal"
       "$mainMod, C, killactive,"
