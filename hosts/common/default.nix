@@ -38,15 +38,24 @@
     git
     tailscale
     zsh
+  
   ];
 
   # Common services
   services.tailscale = {
     enable = true;
     openFirewall = true;
+    authKeyFile = "/home/faelterman/secrets/tsauthkeyfile";
     useRoutingFeatures = "both";
     interfaceName = "userspace-networking";
+    extraUpFlags = [
+      "--advertise-exit-node" # if you want to use it as an exit node 
+      "--advertise-routes=10.0.0.0/24,172.16.10.0/24" # if you want to advertise routes 
+      # "--login-server=https://your-instance" # if you use a non-default tailscale coordinator
+      # "--accept-dns=false" # if its' a server you prolly dont need magicdns
+    ];
   };
+  
 
   services.openssh.enable = true;
 

@@ -20,6 +20,7 @@ in
     ./modules/yazi.nix
     ./modules/rbw.nix
     ./modules/waybar/waybar.nix
+    .modules/outlook.nix
   ];
 
 

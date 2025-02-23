@@ -5,4 +5,5 @@
     ./hosts/common/default.nix
     ./hosts/desktop/default.nix
   ];
+
 }
