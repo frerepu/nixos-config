@@ -27,6 +27,7 @@ in
     ./modules/microsoft/outlook.nix
     ./modules/microsoft/word.nix
     ./modules/microsoft/excel.nix
+    ./modules/hyprland/default.nix
   ];
 
 
