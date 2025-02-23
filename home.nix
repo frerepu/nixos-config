@@ -22,7 +22,7 @@ in
     ./modules/waybar/waybar.nix
     ./modules/microsoft/outlook.nix
     ./modules/microsoft/word.nix
-    #./modules/microsoft/excel.nix
+    ./modules/microsoft/excel.nix
   ];
 
 
