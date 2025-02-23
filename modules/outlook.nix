@@ -6,7 +6,9 @@
   home.packages = with pkgs; [
     (writeScriptBin "outlook" ''
       #!${pkgs.bash}/bin/bash
-      ${pkgs.zen-browser}/bin/zen-browser --app="https://outlook.office.com/mail/"
+      ${pkgs.chromium}/bin/chromium \
+        --app=https://outlook.office.com/mail/ \
+        --class=outlook-web
     '')
   ];
 
@@ -15,7 +17,7 @@
     name = "Outlook";
     genericName = "Email Client";
     exec = "outlook";
-    icon = "outlook"; # You'll need to set up the icon separately
+    icon = "outlook";
     categories = [ "Network" "Email" ];
     type = "Application";
   };
