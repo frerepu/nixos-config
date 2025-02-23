@@ -182,14 +182,14 @@ in
   };
   
 
-  xdg.desktopEntries.yazi = {
-    name = "Yazi";
-    comment = "Terminal file manager";
-    terminal = false;  # Changed this to false
-    exec = "kitty -e yazi";
-    categories = [ "System" "FileManager" ];
-    type = "Application";
-  };
+  # xdg.desktopEntries.yazi = {
+  #   name = "Yazi";
+  #   comment = "Terminal file manager";
+  #   terminal = false;  # Changed this to false
+  #   exec = "kitty -e yazi";
+  #   categories = [ "System" "FileManager" ];
+  #   type = "Application";
+  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
