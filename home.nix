@@ -6,6 +6,7 @@ let
     ".." = "cd ..";
     c = "clear";
     ls = "ls -lah --color=auto";
+    cat = "bat"
   };
   system = "x86_64-linux";
 in
@@ -16,6 +17,7 @@ in
 
   #xsession.numlock.enable = true;
   imports = [
+    ./modules/git.nix
     ./modules/starship.nix
     ./modules/wofi/wofi.nix
     ./modules/yazi.nix
@@ -142,14 +144,6 @@ in
     # EDITOR = "emacs";
   };
 
-  programs.git ={
-    enable = true;
-    userName = "frerepu";
-    userEmail = "frederic@republiekbrugge.be";
-    extraConfig = {
-      init.defaultBranch = "main";
-    };
-  };
 
   #programs.kitty.enable = true; 
 
