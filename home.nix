@@ -19,6 +19,7 @@ in
     ./modules/starship.nix
     ./modules/wofi/wofi.nix
     ./modules/yazi.nix
+    ./modules/bat.nix
     ./modules/rbw.nix
     ./modules/waybar/waybar.nix
     ./modules/microsoft/outlook.nix
