@@ -20,7 +20,9 @@ in
     ./modules/yazi.nix
     ./modules/rbw.nix
     ./modules/waybar/waybar.nix
-    ./modules/outlook.nix
+    ./modules/microsoft/outlook.nix
+    ./modules/microsoft/word.nix
+    #./modules/microsoft/excel.nix
   ];
 
 
