@@ -17,6 +17,7 @@ in
   #xsession.numlock.enable = true;
   imports = [
     ./modules/starship.nix
+    ./modules/wofi/wofi.nix
     ./modules/yazi.nix
     ./modules/rbw.nix
     ./modules/waybar/waybar.nix
@@ -39,7 +40,6 @@ in
     xfce.thunar-volman         # Optional: for removable device management
     chromium
     wev
-    wofi
     rofi-rbw-wayland
     hyprpaper
     hyprpicker
@@ -84,6 +84,7 @@ in
     element-desktop
     cliphist
     wl-clipboard
+    onedrivegui
     
 
 
