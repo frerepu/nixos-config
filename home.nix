@@ -24,9 +24,7 @@ in
     ./modules/bat.nix
     ./modules/rbw.nix
     ./modules/waybar/waybar.nix
-    ./modules/microsoft/outlook.nix
-    ./modules/microsoft/word.nix
-    ./modules/microsoft/excel.nix
+    ./modules/microsoft
     ./modules/hyprland/default.nix
   ];
 
