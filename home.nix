@@ -11,10 +11,12 @@ let
   system = "x86_64-linux";
 in
 {
-  home.username = "faelterman";
-  home.homeDirectory = "/home/faelterman";
-  home.stateVersion = "24.11";
-
+  home = {
+    #backupFileExtension = "backup";
+    username = "faelterman";
+    homeDirectory = "/home/faelterman";
+    stateVersion = "24.11";
+  };
   #xsession.numlock.enable = true;
   imports = [
     ./modules/git.nix
@@ -27,9 +29,11 @@ in
     ./modules/microsoft
     ./modules/hyprland/default.nix
   ];
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+  
 
-  home-manager.backupFileExtension = "backup";
-
+  # 
   home.packages = with pkgs; [
     git
     pciutils
@@ -179,6 +183,5 @@ in
       tweaks = ["normal"];
   };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+
 }
