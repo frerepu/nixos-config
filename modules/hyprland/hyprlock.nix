@@ -8,7 +8,7 @@
         grace = 0;
         no_fade_in = false;
         ignore_empty_password = false;
-        max_attempts = 5;  # Set maximum attempts to 5
+        # No max_attempts setting, use default
       };
       
       background = [{
@@ -66,29 +66,12 @@
         hide_input = false;
         check_color = "rgba(203, 166, 247, 1.0)";
         fail_color = "rgba(243, 139, 168, 1.0)";
-        fail_text = "";  # Empty fail text to avoid any counter display
+        fail_text = "Mo gie Wost!";  # Simple text without any formatting to avoid variable expansion
         capslock_color = "rgba(249, 226, 175, 1.0)";
         position = "0, -47";
         halign = "center";
         valign = "center";
       }];
-      
-      # Add a permanent label for the fail message instead
-      label = [
-        # Fail message label (always visible)
-        {
-          monitor = "";
-          text = "Mo gie Wost!";
-          color = "rgba(243, 139, 168, 1.0)";  # Using fail color
-          font_size = 18;
-          font_family = "JetBrainsMono Nerd Font";
-          position = "0, -15";
-          halign = "center";
-          valign = "center";
-          # Make this label only visible during failed attempts
-          visibility = "if_no_input";  # This might not work but worth trying
-        }
-      ];
     };
   };
 }
