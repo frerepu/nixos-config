@@ -28,8 +28,7 @@ in
     ./modules/hyprland/default.nix
   ];
 
-
-
+  home-manager.backupFileExtension = "backup";
 
   home.packages = with pkgs; [
     git
@@ -140,7 +139,7 @@ in
   #  /etc/profiles/per-user/faelterman/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    TERM = "xterm-256color";
   };
 
 
