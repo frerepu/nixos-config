@@ -193,7 +193,7 @@
       character = {
         disabled = false;
         success_symbol = "[➜](bold green)";
-        error_symbol = "[](bold fg:red)";
+        error_symbol = "[➜](bold fg:red)";
         vimcmd_symbol = "[](bold fg:green)";
         vimcmd_replace_one_symbol = "[](bold fg:purple)";
         vimcmd_replace_symbol = "[](bold fg:purple)";
