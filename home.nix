@@ -48,8 +48,8 @@ in
     rofi-rbw-wayland
     hyprpaper
     hyprpicker
-    hypridle
-    hyprlock
+    hypridle  #adjust module so entry here can go
+    hyprlock  #adjust module so entry here can go 
     hyprsunset
     hyprpolkitagent
     #hyprsysteminfo
@@ -57,12 +57,11 @@ in
     hyprshot
     hyprls
     libnotify
-    swaynotificationcenter
+    swaynotificationcenter  # Optional: change for dunst
     wlogout
     swayosd
     nwg-look
     catppuccin
-    # waybar
     zed-editor
     (vscode-with-extensions.override {
     vscodeExtensions = with vscode-extensions; [
@@ -90,8 +89,12 @@ in
     cliphist
     wl-clipboard
     onedrivegui
-    
-
+    btop
+    tldr
+    eza
+    figlet
+    fzf
+    zoxide
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
