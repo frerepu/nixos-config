@@ -28,6 +28,7 @@ in
     ./modules/waybar/waybar.nix
     ./modules/microsoft
     ./modules/hyprland/default.nix
+    ./modules/figlet.nix
   ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
