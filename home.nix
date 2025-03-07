@@ -7,6 +7,7 @@ let
     c = "clear";
     ls = "ls -lah --color=auto";
     cat = "bat";
+    figletas = "figlet -f ~/.local/share/figlet/fonts/ansi_shadow.flf";
   };
   system = "x86_64-linux";
 in
@@ -32,7 +33,7 @@ in
   ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
+  services.figlet.enable = true; 
 
   # 
   home.packages = with pkgs; [
@@ -93,7 +94,7 @@ in
     btop
     tldr
     eza
-    figlet
+    #figlet
     fzf
     zoxide
 
