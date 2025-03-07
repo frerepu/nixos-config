@@ -1,9 +1,15 @@
+# ██████╗ ██╗███╗   ██╗██████╗ ███████╗
+# ██╔══██╗██║████╗  ██║██╔══██╗██╔════╝
+# ██████╔╝██║██╔██╗ ██║██║  ██║███████╗
+# ██╔══██╗██║██║╚██╗██║██║  ██║╚════██║
+# ██████╔╝██║██║ ╚████║██████╔╝███████║
+# ╚═════╝ ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝
 {
   wayland.windowManager.hyprland.settings = {
     bind = [
 
       "$mainMod, Return, exec, $terminal"
-      "$mainMod, C, killactive,"
+      "$mainMod, C, killactive, "
       "$mainMod, M, exit,"
       "$mainMod, E, exec, $fileManager"
       "$mainMod, B, exec, $browser"
