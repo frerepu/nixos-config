@@ -38,8 +38,8 @@
       ];
 
       general = {
-        gaps_in = 0;
-        gaps_out = 0;
+        gaps_in = 2;
+        gaps_out = 2;
 
         border_size = 2;
        
@@ -50,11 +50,11 @@
 
         allow_tearing = false;
 
-        layout = "master"; #"dwindle";
+        layout = "dwindle"; #"master"; 
       };
 
       decoration = {
-        rounding = 0;
+        rounding = 5;
 
         active_opacity = 1.0;
         inactive_opacity = 1.0;
