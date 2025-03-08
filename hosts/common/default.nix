@@ -74,7 +74,7 @@
     allowedUDPPorts = [ config.services.tailscale.port ];
     allowedTCPPorts = [ 22 ];
   };
-
+  
   # Base user configuration
   users.users.faelterman = {
     isNormalUser = true;
