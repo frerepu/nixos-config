@@ -19,7 +19,7 @@
         desktop = nixpkgs-unstable.lib.nixosSystem {
           inherit system;
           modules = [
-            ./configuration.nix
+            ./desktop-configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -38,7 +38,7 @@
       mbp15 = nixpkgs-unstable.lib.nixosSystem {
           inherit system;
           modules = [
-            ./configuration.nix
+            ./mbp15-configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
