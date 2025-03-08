@@ -3,7 +3,7 @@
      ./hardware.nix  # Machine-specific hardware config
   ];
 
-  networking.hostName = "nixos";
+  networking.hostName = "mbp15";
   networking.interfaces.enp4s0f0.useDHCP = true;
   
   environment.systemPackages = [(
