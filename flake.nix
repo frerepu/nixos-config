@@ -35,6 +35,26 @@
             }
           ];
         };
+      mbp15 = nixpkgs-unstable.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.faelterman = { pkgs, ... }: {
+                  imports = [
+                    ./home.nix
+                    catppuccin.homeManagerModules.catppuccin
+                  ];
+                };
+              };
+            }
+          ];
+        };
+
       };
     };
 }
