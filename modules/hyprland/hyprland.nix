@@ -18,8 +18,8 @@
         "QT_QPA_PLATFORM,wayland"
         "XDG_SCREENSHOTS_DIR,$HOME/screens"
       ];
-
-      monitor = "eDP-1,3840x2160,auto,1.6";
+      monitor = ",preferred,auto,auto";
+     # monitor = "eDP-1,3840x2160,auto,1.6";
       "$mainMod" = "SUPER";
       "$terminal" = "kitty";
       "$browser" = "zen browser";
