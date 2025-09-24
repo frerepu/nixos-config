@@ -28,14 +28,14 @@
                 users.faelterman = { pkgs, ... }: {
                   imports = [
                     ./home.nix
-                    catppuccin.homeManagerModules.catppuccin
+                    catppuccin.homeModules.catppuccin
                   ];
                 };
               };
             }
           ];
         };
-      mbp15 = nixpkgs-unstable.lib.nixosSystem {
+        mbp15 = nixpkgs-unstable.lib.nixosSystem {
           inherit system;
           modules = [
             ./mbp15-configuration.nix
@@ -47,14 +47,13 @@
                 users.faelterman = { pkgs, ... }: {
                   imports = [
                     ./home.nix
-                    catppuccin.homeManagerModules.catppuccin
+                    catppuccin.homeModules.catppuccin
                   ];
                 };
               };
             }
           ];
         };
-
       };
     };
 }

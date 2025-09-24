@@ -74,7 +74,6 @@
     after = ["graphical-session-pre.target"];
   };
 
-  services.xserver.displayManager.sessionPackages = [ pkgs.hyprland ];
 
   # Desktop-specific environment variables
   environment.sessionVariables = {

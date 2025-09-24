@@ -37,7 +37,7 @@ in
 
   # 
   home.packages = with pkgs; [
-    git
+    #git
     pciutils
     teams-for-linux
     fastfetch
@@ -182,10 +182,8 @@ in
 
   catppuccin.enable = true;
   catppuccin.gtk = {
-      enable = true;
       icon.enable = true;
-      size = "standard";
-      tweaks = ["normal"];
+
   };
 
 
