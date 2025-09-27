@@ -31,6 +31,14 @@
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  nix.settings = {
+    download-buffer-size = 256 * 1024 * 1024; # 256MB
+    # You can also add other useful settings while you're at it:
+    max-jobs = "auto";
+    cores = 0; # Use all available cores
+  };
+
+
   # Base system packages
   environment.systemPackages = with pkgs; [
     wget
