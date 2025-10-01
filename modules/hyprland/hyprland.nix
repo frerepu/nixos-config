@@ -1,9 +1,9 @@
-# ██╗  ██╗██╗   ██╗██████╗ ██████╗ ██╗      █████╗ ███╗   ██╗██████╗ 
+# ██╗  ██╗██╗   ██╗██████╗ ██████╗ ██╗      █████╗ ███╗   ██╗██████╗
 # ██║  ██║╚██╗ ██╔╝██╔══██╗██╔══██╗██║     ██╔══██╗████╗  ██║██╔══██╗
 # ███████║ ╚████╔╝ ██████╔╝██████╔╝██║     ███████║██╔██╗ ██║██║  ██║
 # ██╔══██║  ╚██╔╝  ██╔═══╝ ██╔══██╗██║     ██╔══██║██║╚██╗██║██║  ██║
 # ██║  ██║   ██║   ██║     ██║  ██║███████╗██║  ██║██║ ╚████║██████╔╝
-# ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ 
+# ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -42,7 +42,7 @@
         gaps_out = 2;
 
         border_size = 2;
-       
+
         "col.active_border" = "rgba(6c63ffee) rgba(fab387ee) 70deg";
         "col.inactive_border" = "rgba(595959aa)";
 
@@ -50,7 +50,7 @@
 
         allow_tearing = false;
 
-        layout = "dwindle"; #"master"; 
+        layout = "dwindle"; #"master";
       };
 
       decoration = {
@@ -114,12 +114,12 @@
      };
 
 
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_invert = false;
-        workspace_swipe_forever	= true;
-
-      };
+     gestures = {
+       # Use the new gesture syntax
+       gesture = [
+         "3, horizontal, workspace"
+       ];
+     };
 
       dwindle = {
         pseudotile = true;
