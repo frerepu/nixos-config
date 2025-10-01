@@ -30,12 +30,13 @@ in
     ./modules/microsoft
     ./modules/hyprland/default.nix
     ./modules/figlet.nix
+    ./modules/zenbrowser.nix
   ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  services.figlet.enable = true; 
+  services.figlet.enable = true;
 
-  # 
+  #
   home.packages = with pkgs; [
     #git
     pciutils
@@ -51,7 +52,7 @@ in
     hyprpaper
     hyprpicker
     hypridle  #adjust module so entry here can go
-    hyprlock  #adjust module so entry here can go 
+    hyprlock  #adjust module so entry here can go
     hyprsunset
     hyprpolkitagent
     #hyprsysteminfo
@@ -152,7 +153,7 @@ in
   };
 
 
-  #programs.kitty.enable = true; 
+  #programs.kitty.enable = true;
 
   programs.bash = {
     enable = true;
