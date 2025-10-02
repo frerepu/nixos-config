@@ -46,7 +46,7 @@
     git
     tailscale
     zsh
-  
+
   ];
 
   # Common services
@@ -58,11 +58,11 @@
     #interfaceName = "userspace-networking";
     extraUpFlags = [
       "--advertise-exit-node"
-      "--advertise-routes=10.0.0.0/24,172.16.10.0/24"
+      "--advertise-routes=172.16.10.0/24"
       "--accept-routes"  # Add this line
     ];
   };
-  
+
 
   services.openssh.enable = true;
 
@@ -77,11 +77,12 @@
   # Base firewall configuration
   networking.firewall = {
     enable = true;
+    allowPing = true;
     trustedInterfaces = [ "tailscale0" ];
     allowedUDPPorts = [ config.services.tailscale.port ];
     allowedTCPPorts = [ 22 ];
   };
-  
+
   # Base user configuration
   users.users.faelterman = {
     isNormalUser = true;
