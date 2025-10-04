@@ -1,7 +1,7 @@
 {
   imports = [
-     #./excel.nix
-     #./outlook.nix
-     #./word.nix
+     ./excel.nix
+     ./outlook.nix
+     ./word.nix
   ];
 }

@@ -43,6 +43,9 @@ in
     teams-for-linux
     fastfetch
     kitty
+    nemo-with-extensions
+    unzip
+
     xfce.thunar
     xfce.thunar-archive-plugin  # Optional: for archive handling
     xfce.thunar-volman         # Optional: for removable device management
@@ -65,6 +68,7 @@ in
     swayosd
     nwg-look
     catppuccin
+    claude-code
     zed-editor
     (vscode-with-extensions.override {
     vscodeExtensions = with vscode-extensions; [
@@ -72,7 +76,8 @@ in
       esbenp.prettier-vscode
       ms-python.python
       github.copilot
-      github.copilot-chat
+      anthropic.claude-code
+      #github.copilot-chat
       tailscale.vscode-tailscale
       catppuccin.catppuccin-vsc
       ms-azuretools.vscode-docker
