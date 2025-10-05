@@ -24,8 +24,8 @@
 
       # Common general settings (can be overridden by host-specific)
       general = {
-        gaps_in = lib.mkDefault 5;
-        gaps_out = lib.mkDefault 20;
+        gaps_in = lib.mkDefault 2;
+        gaps_out = lib.mkDefault 2;
         border_size = lib.mkDefault 2;
         "col.active_border" = lib.mkDefault "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = lib.mkDefault "rgba(595959aa)";
@@ -35,7 +35,7 @@
 
       # Common decoration settings (can be overridden by host-specific)
       decoration = {
-        rounding = lib.mkDefault 10;
+        rounding = lib.mkDefault 8;
         blur = {
           enabled = lib.mkDefault true;
           size = lib.mkDefault 3;
