@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
   # Common Hyprland configuration shared across all hosts
   # Host-specific settings (monitors, input devices) should be in host-specific configs
 
@@ -13,38 +13,38 @@
 
       # Common input settings (can be overridden by host-specific)
       input = {
-        kb_layout = "be";
-        kb_variant = "";
-        kb_model = "";
-        kb_options = "";
-        kb_rules = "";
-        follow_mouse = 1;
-        sensitivity = 0;
+        kb_layout = lib.mkDefault "be";
+        kb_variant = lib.mkDefault "";
+        kb_model = lib.mkDefault "";
+        kb_options = lib.mkDefault "";
+        kb_rules = lib.mkDefault "";
+        follow_mouse = lib.mkDefault 1;
+        sensitivity = lib.mkDefault 0;
       };
 
-      # Common general settings
+      # Common general settings (can be overridden by host-specific)
       general = {
-        gaps_in = 5;
-        gaps_out = 20;
-        border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
-        layout = "dwindle";
-        allow_tearing = false;
+        gaps_in = lib.mkDefault 5;
+        gaps_out = lib.mkDefault 20;
+        border_size = lib.mkDefault 2;
+        "col.active_border" = lib.mkDefault "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        "col.inactive_border" = lib.mkDefault "rgba(595959aa)";
+        layout = lib.mkDefault "dwindle";
+        allow_tearing = lib.mkDefault false;
       };
 
-      # Common decoration settings
+      # Common decoration settings (can be overridden by host-specific)
       decoration = {
-        rounding = 10;
+        rounding = lib.mkDefault 10;
         blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
+          enabled = lib.mkDefault true;
+          size = lib.mkDefault 3;
+          passes = lib.mkDefault 1;
         };
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        drop_shadow = lib.mkDefault true;
+        shadow_range = lib.mkDefault 4;
+        shadow_render_power = lib.mkDefault 3;
+        "col.shadow" = lib.mkDefault "rgba(1a1a1aee)";
       };
 
       # Common animations (can be overridden by host-specific)
@@ -52,24 +52,24 @@
         enabled = true;
       };
 
-      # Common layout settings
+      # Common layout settings (can be overridden by host-specific)
       dwindle = {
-        pseudotile = true;
-        preserve_split = true;
+        pseudotile = lib.mkDefault true;
+        preserve_split = lib.mkDefault true;
       };
 
       master = {
-        new_is_master = true;
+        new_is_master = lib.mkDefault true;
       };
 
       # Common gestures (can be overridden for laptops)
       gestures = {
-        workspace_swipe = false;
+        workspace_swipe = lib.mkDefault false;
       };
 
-      # Common miscellaneous settings
+      # Common miscellaneous settings (can be overridden by host-specific)
       misc = {
-        force_default_wallpaper = -1;
+        force_default_wallpaper = lib.mkDefault (-1);
       };
 
       # Universal keybindings - these apply to all hosts
