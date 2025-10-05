@@ -30,7 +30,7 @@ in
     ./modules/microsoft
     ./modules/hyprland/default.nix
     ./modules/figlet.nix
-    ./modules/zenbrowser.nix
+    #./modules/zenbrowser.nix
   ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
