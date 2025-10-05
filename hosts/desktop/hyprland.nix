@@ -5,11 +5,10 @@
   wayland.windowManager.hyprland.settings = {
     # Desktop monitor configuration
     monitor = [
-      # Adjust these to match your desktop monitor setup
-      # Format: name,resolution@refresh,position,scale
-      "DP-1,2560x1440@144,0x0,1"
+      # Your actual monitor is eDP-1 with 4K resolution
+      "eDP-1,3840x2160@60,0x0,1.6"  # Better scaling for 4K display
       # Add additional monitors as needed
-      # "HDMI-A-1,1920x1080@60,2560x0,1"
+      # "HDMI-A-1,1920x1080@60,3840x0,1"
       ",preferred,auto,1" # Fallback for any other monitors
     ];
 
@@ -32,9 +31,11 @@
         passes = 2;
         new_optimizations = true;
       };
-      drop_shadow = true;
-      shadow_range = 6;
-      shadow_render_power = 3;
+      shadow = {
+        enabled = true;
+        range = 6;
+        render_power = 3;
+      };
     };
 
     # More intensive animations for desktop (since it has more power)

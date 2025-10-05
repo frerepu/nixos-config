@@ -41,10 +41,12 @@
           size = lib.mkDefault 3;
           passes = lib.mkDefault 1;
         };
-        drop_shadow = lib.mkDefault true;
-        shadow_range = lib.mkDefault 4;
-        shadow_render_power = lib.mkDefault 3;
-        "col.shadow" = lib.mkDefault "rgba(1a1a1aee)";
+        shadow = {
+          enabled = lib.mkDefault true;
+          range = lib.mkDefault 4;
+          render_power = lib.mkDefault 3;
+          color = lib.mkDefault "rgba(1a1a1aee)";
+        };
       };
 
       # Common animations (can be overridden by host-specific)
@@ -59,13 +61,10 @@
       };
 
       master = {
-        new_is_master = lib.mkDefault true;
+        new_status = lib.mkDefault "master";
       };
 
-      # Common gestures (can be overridden for laptops)
-      gestures = {
-        workspace_swipe = lib.mkDefault false;
-      };
+      # Gestures are handled by host-specific configs
 
       # Common miscellaneous settings (can be overridden by host-specific)
       misc = {

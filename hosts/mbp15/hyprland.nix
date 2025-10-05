@@ -45,9 +45,11 @@
         passes = 1;
         new_optimizations = true;
       };
-      drop_shadow = true;
-      shadow_range = 4;
-      shadow_render_power = 2;
+      shadow = {
+        enabled = true;
+        range = 4;
+        render_power = 2;
+      };
     };
 
     # Battery-friendly animations
@@ -64,16 +66,8 @@
       ];
     };
 
-    # Laptop-specific gestures
-    gestures = {
-      workspace_swipe = true;
-      workspace_swipe_fingers = 3;
-      workspace_swipe_distance = 300;
-      workspace_swipe_invert = true;
-      workspace_swipe_min_speed_to_force = 30;
-      workspace_swipe_cancel_ratio = 0.5;
-      workspace_swipe_create_new = true;
-    };
+    # Laptop-specific gestures (removed deprecated options)
+    # Gesture support may need to be configured differently in newer Hyprland
 
     # MacBook Pro specific keybindings
     bind = [
