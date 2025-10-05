@@ -23,11 +23,11 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; };  # REMOVED the extra "home-manager." prefix
+                extraSpecialArgs = { inherit inputs; };
                 users.faelterman = { pkgs, ... }: {
                   imports = [
-                    ./home.nix
-                    catppuccin.homeModules.catppuccin  # Also fixed the catppuccin warning
+                    ./hosts/desktop/home.nix
+                    catppuccin.homeModules.catppuccin
                   ];
                 };
               };
@@ -44,11 +44,11 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; };  # REMOVED the extra "home-manager." prefix
+                extraSpecialArgs = { inherit inputs; };
                 users.faelterman = { pkgs, ... }: {
                   imports = [
-                    ./home.nix
-                    catppuccin.homeModules.catppuccin  # Also fixed the catppuccin warning
+                    ./hosts/mbp15/home.nix
+                    catppuccin.homeModules.catppuccin
                   ];
                 };
               };

@@ -1,32 +1,37 @@
-{ config, lib, pkgs, inputs, ... }: {  # ADD inputs to arguments
+{ config, lib, pkgs, inputs, ... }: {
   imports = [
     ./hardware.nix
-    inputs.catppuccin.nixosModules.catppuccin 
+    inputs.catppuccin.nixosModules.catppuccin
   ];
-  
 
+  # Host-specific configuration
   networking.hostName = "nixos";
   networking.interfaces.enp4s0f0.useDHCP = true;
-  
-  environment.systemPackages = [
-    pkgs.catppuccin-sddm
-  ];
-  
+
+  # Desktop services
   services.flatpak.enable = true;
   services.onedrive.enable = true;
-  # Desktop-specific services
+
+  # X11/Display server configuration
   services.xserver = {
     enable = true;
     xkb = {
-      layout = "be";      # Changed from layout to xkb.layout
-      options = "";       # Changed from xkbOptions to xkb.options
+      layout = "be";
+      options = "";
     };
   };
+
+  # SDDM configuration
+  environment.systemPackages = [
+    pkgs.catppuccin-sddm
+  ];
+
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
     package = pkgs.kdePackages.sddm;
   };
+
   catppuccin.sddm = {
     enable = true;
     flavor = "mocha";
@@ -35,12 +40,13 @@
     # background = "/home/faelterman/.config/background/wallhaven-8x16mo.png";
     # loginBackground = true;
   };
+
   services.displayManager = {
     defaultSession = "hyprland";
     sessionPackages = [ pkgs.hyprland ];
   };
 
-  # Desktop-specific hardware configuration
+  # Audio configuration
   console.keyMap = "be-latin1";
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -51,14 +57,15 @@
     pulse.enable = true;
   };
 
-  # Desktop-specific programs
+  # Hyprland configuration
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
-  
+
   security.pam.services.hyprlock = {};
-  
+
+  # XDG Portal configuration
   xdg.portal = {
     enable = true;
     extraPortals = [
@@ -68,7 +75,7 @@
     config.common.default = "*";
   };
 
-  # Desktop-specific session management
+  # Systemd session management
   systemd.user.targets.hyprland-session = {
     description = "Hyprland compositor session";
     documentation = ["man:systemd.special(7)"];
@@ -77,8 +84,7 @@
     after = ["graphical-session-pre.target"];
   };
 
-
-  # Desktop-specific environment variables
+  # Environment variables
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     XDG_SESSION_TYPE = "wayland";
@@ -95,7 +101,7 @@
 
   environment.pathsToLink = [ "/share/wayland-sessions" ];
 
-  # Desktop-specific activation scripts
+  # Activation scripts
   system.activationScripts = {
     sddm-session = {
       text = ''

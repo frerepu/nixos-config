@@ -13,12 +13,10 @@ let
 in
 {
   home = {
-    #backupFileExtension = "backup";
     username = "faelterman";
     homeDirectory = "/home/faelterman";
     stateVersion = "24.11";
   };
-  #xsession.numlock.enable = true;
   imports = [
     ./modules/git.nix
     ./modules/starship.nix
@@ -30,95 +28,87 @@ in
     ./modules/microsoft
     ./modules/hyprland/default.nix
     ./modules/figlet.nix
-    #./modules/zenbrowser.nix
   ];
-  # Let Home Manager install and manage itself.
+  # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
   services.figlet.enable = true;
 
-  #
   home.packages = with pkgs; [
-    #git
+    # System utilities
     pciutils
-    teams-for-linux
     fastfetch
-    kitty
-    nemo-with-extensions
     unzip
-
-    xfce.thunar
-    xfce.thunar-archive-plugin  # Optional: for archive handling
-    xfce.thunar-volman         # Optional: for removable device management
-    chromium
-    wev
-    rofi-rbw-wayland
-    hyprpaper
-    hyprpicker
-    hypridle  #adjust module so entry here can go
-    hyprlock  #adjust module so entry here can go
-    hyprsunset
-    hyprpolkitagent
-    #hyprsysteminfo
-    hyprcursor
-    hyprshot
-    hyprls
-    libnotify
-    swaynotificationcenter  # Optional: change for dunst
-    wlogout
-    swayosd
-    nwg-look
-    catppuccin
-    claude-code
-    zed-editor
-    (vscode-with-extensions.override {
-    vscodeExtensions = with vscode-extensions; [
-      bbenoist.nix
-      esbenp.prettier-vscode
-      ms-python.python
-      github.copilot
-      anthropic.claude-code
-      #github.copilot-chat
-      tailscale.vscode-tailscale
-      catppuccin.catppuccin-vsc
-      ms-azuretools.vscode-docker
-      ms-vscode-remote.remote-ssh
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        name = "remote-ssh-edit";
-        publisher = "ms-vscode-remote";
-        version = "0.47.2";
-        sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
-      }
-    ];
-  })
-    webcord
-    mumble
-    element-desktop
-    cliphist
-    wl-clipboard
-    onedrivegui
     btop
     tldr
     eza
-    #figlet
     fzf
     zoxide
-    #orca-slicer
+    wev
+    libnotify
 
+    # File managers
+    kitty
+    nemo-with-extensions
+    xfce.thunar
+    xfce.thunar-archive-plugin
+    xfce.thunar-volman
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    # Development tools
+    claude-code
+    zed-editor
+    (vscode-with-extensions.override {
+      vscodeExtensions = with vscode-extensions; [
+        bbenoist.nix
+        esbenp.prettier-vscode
+        ms-python.python
+        github.copilot
+        anthropic.claude-code
+        tailscale.vscode-tailscale
+        catppuccin.catppuccin-vsc
+        ms-azuretools.vscode-docker
+        ms-vscode-remote.remote-ssh
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "remote-ssh-edit";
+          publisher = "ms-vscode-remote";
+          version = "0.47.2";
+          sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
+        }
+      ];
+    })
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    # Web browsers
+    chromium
 
+    # Communication
+    teams-for-linux
+    webcord
+    mumble
+    element-desktop
+
+    # Hyprland ecosystem
+    hyprpaper
+    hyprpicker
+    hyprsunset
+    hyprpolkitagent
+    hyprcursor
+    hyprshot
+    hyprls
+
+    # Desktop utilities
+    rofi-rbw-wayland
+    swaynotificationcenter
+    wlogout
+    swayosd
+    nwg-look
+    cliphist
+    wl-clipboard
+
+    # Cloud storage
+    onedrivegui
+
+    # Theming
+    catppuccin
   ];
 
 
@@ -159,19 +149,13 @@ in
     TERM = "xterm-256color";
   };
 
-
-  #programs.kitty.enable = true;
-
   programs.bash = {
     enable = true;
     shellAliases = myAliases;
-      bashrcExtra = ''
-        eval "$(starship init bash)"
-     '';
+    bashrcExtra = ''
+      eval "$(starship init bash)"
+    '';
   };
-
-
-
   home.pointerCursor = {
      gtk.enable = true;
      x11.enable = true;
@@ -190,9 +174,6 @@ in
 
   catppuccin.enable = true;
   catppuccin.gtk = {
-      icon.enable = true;
-
+    icon.enable = true;
   };
-
-
 }

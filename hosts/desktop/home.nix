@@ -1,0 +1,7 @@
+{ pkgs, ... }: {
+  # Desktop-specific home configuration
+  imports = [
+    ../../home.nix
+    ./hyprland.nix
+  ];
+}
