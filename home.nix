@@ -45,7 +45,7 @@ in
     zoxide
     wev
     libnotify
-
+    
     # File managers
     kitty
     nemo-with-extensions
@@ -54,6 +54,7 @@ in
     xfce.thunar-volman
 
     # Development tools
+    nodejs_20
     claude-code
     zed-editor
     (vscode-with-extensions.override {
