@@ -63,6 +63,13 @@
     ];
   };
 
+  # USB auto-mount and file manager support
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;
+  programs.thunar.enable = true;
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-volman
+  ];
 
   services.openssh.enable = true;
 

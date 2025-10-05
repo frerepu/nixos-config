@@ -11,6 +11,9 @@
   # Desktop services
   services.flatpak.enable = true;
   services.onedrive.enable = true;
+  
+  #automount usb drives
+  services.udisks2.enable = true;
 
   # X11/Display server configuration
   services.xserver = {
