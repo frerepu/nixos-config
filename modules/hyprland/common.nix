@@ -71,8 +71,23 @@
         force_default_wallpaper = lib.mkDefault (-1);
       };
 
+      # Autostart applications
+      exec-once = [
+        "waybar"
+        "swaync"
+        "hypridle"
+        "hyprpaper"
+        "systemctl --user start hyprpolkitagent"
+        "wl-paste --type text --watch cliphist store"
+        "wl-paste --type image --watch cliphist store"
+      ];
+      # Add these variable definitions
+        "$terminal" = "kitty";
+        "$filemanger" = "thunar";
+        "$menu" = "wofi --show drun";
+        "$browser" = "flatpak run app.zen_browser.zen";
       # Universal keybindings are in binds.nix - imported via default.nix
-      "$mainMod" = "SUPER";
+        "$mainMod" = "SUPER";
 
       # Common window rules
       windowrulev2 = [

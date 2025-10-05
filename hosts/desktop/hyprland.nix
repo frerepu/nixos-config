@@ -6,7 +6,7 @@
     # Desktop monitor configuration
     monitor = [
       # Your actual monitor is eDP-1 with 4K resolution
-      "eDP-1,3840x2160@60,0x0,1.6"  # Better scaling for 4K display
+      "eDP-1,3840x2160@60,0x0,1.5"  # Better scaling for 4K display
       # Add additional monitors as needed
       # "HDMI-A-1,1920x1080@60,3840x0,1"
       ",preferred,auto,1" # Fallback for any other monitors

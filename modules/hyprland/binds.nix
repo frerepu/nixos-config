@@ -4,7 +4,11 @@
 # ██╔══██╗██║██║╚██╗██║██║  ██║╚════██║
 # ██████╔╝██║██║ ╚████║██████╔╝███████║
 # ╚═════╝ ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝
-{
+
+
+
+{lib, pkgs, ...}:{
+
   wayland.windowManager.hyprland.settings = {
     bind = [
 
@@ -19,7 +23,6 @@
       "$mainMod, J, togglesplit," # dwindle
       "$mainMod SHIFT, E, exec, bemoji -cn"
       "$mainMod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
-      "$mainMod, B, exec, $browser"
       "$mainMod, L, exec, hyprlock"
       "$mainMod, escape, exec, wlogout"
       "$mainMod SHIFT, P, exec, hyprpicker -an"
