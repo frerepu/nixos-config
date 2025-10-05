@@ -13,6 +13,7 @@
         hide_cursor = true;
         grace = 0;
         no_fade_in = false;
+        no_fade_out = true;
         ignore_empty_password = false;
         # No max_attempts setting, use default
       };
@@ -67,8 +68,9 @@
         outer_color = "rgba(203, 166, 247, 1.0)";
         inner_color = "rgb(40, 40, 40)";
         font_color = "rgba(235, 219, 178, 1.0)";
-        fade_on_empty = true;
-        placeholder_text = "<span foreground=\"#999999\"><i>󰌾 Password </i></span>";
+        fade_on_empty = false;
+        fade_timeout = 0;
+        placeholder_text = "󰌾 Password";
         hide_input = false;
         check_color = "rgba(203, 166, 247, 1.0)";
         fail_color = "rgba(243, 139, 168, 1.0)";
