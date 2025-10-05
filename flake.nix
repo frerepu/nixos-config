@@ -7,9 +7,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     catppuccin.url = "github:catppuccin/nix";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    zen-browser.inputs.nixpkgs.follows = "nixpkgs-unstable";
-   # zen-browser.inputs.home-manager.follows = "home-manager";
   };
   outputs = { self, nixpkgs-unstable, home-manager, catppuccin, ... }@inputs:
     let

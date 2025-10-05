@@ -8,15 +8,9 @@
   networking.hostName = "nixos";
   networking.interfaces.enp4s0f0.useDHCP = true;
   
-  # environment.systemPackages = [(
-  #   pkgs.catppuccin-sddm.override {
-  #     flavor = "mocha";
-  #     font  = "cascadia-code";
-  #     fontSize = "22";
-  #     background = "/home/faelterman/.config/background/wallhaven-8x16mo.png";
-  #     loginBackground = true;
-  #   }
-  # )];
+  environment.systemPackages = [
+    pkgs.catppuccin-sddm
+  ];
   
   services.flatpak.enable = true;
   services.onedrive.enable = true;
@@ -31,17 +25,16 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-  #  theme = "catppuccin-mocha-mauve";
     package = pkgs.kdePackages.sddm;
   };
-  # catppuccin.sddm = {
-  #   enable = true;
-  #   flavor = "mocha";
-  #   accent = "mauve";
-  #   # Optional settings:
-  #   background = "/home/faelterman/.config/background/wallhaven-8x16mo.png";
-  #   loginBackground = true;
-  # };
+  catppuccin.sddm = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+    # Optional settings:
+    # background = "/home/faelterman/.config/background/wallhaven-8x16mo.png";
+    # loginBackground = true;
+  };
   services.displayManager = {
     defaultSession = "hyprland";
     sessionPackages = [ pkgs.hyprland ];
