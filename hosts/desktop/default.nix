@@ -10,6 +10,9 @@
 
   # Desktop services
   services.flatpak.enable = true;
+
+
+
   services.onedrive.enable = true;
   
   #automount usb drives
