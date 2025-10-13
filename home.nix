@@ -28,6 +28,7 @@ in
     ./modules/microsoft
     ./modules/hyprland/default.nix
     ./modules/figlet.nix
+    ./modules/mixingstation.nix
   ];
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
