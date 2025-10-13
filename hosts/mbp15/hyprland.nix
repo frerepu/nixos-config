@@ -1,6 +1,16 @@
-{ pkgs, ... }: {
-  # MacBook Pro 15" specific Hyprland configuration
-  # This file contains overrides and additions specific to the MacBook Pro setup
+{ pkgs, ... }:
+
+# ██╗  ██╗██╗   ██╗██████╗ ██████╗ ██╗      █████╗ ███╗   ██╗██████╗     ███╗   ███╗██████╗ ██████╗  ██╗███████╗
+# ██║  ██║╚██╗ ██╔╝██╔══██╗██╔══██╗██║     ██╔══██╗████╗  ██║██╔══██╗    ████╗ ████║██╔══██╗██╔══██╗███║██╔════╝
+# ███████║ ╚████╔╝ ██████╔╝██████╔╝██║     ███████║██╔██╗ ██║██║  ██║    ██╔████╔██║██████╔╝██████╔╝╚██║███████╗
+# ██╔══██║  ╚██╔╝  ██╔═══╝ ██╔══██╗██║     ██╔══██║██║╚██╗██║██║  ██║    ██║╚██╔╝██║██╔══██╗██╔═══╝  ██║╚════██║
+# ██║  ██║   ██║   ██║     ██║  ██║███████╗██║  ██║██║ ╚████║██████╔╝    ██║ ╚═╝ ██║██████╔╝██║      ██║███████║
+# ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝     ╚═╝     ╚═╝╚═════╝ ╚═╝      ╚═╝╚══════╝
+#
+# MacBook Pro 15" specific Hyprland configuration
+# This file contains overrides and additions specific to the MacBook Pro setup
+
+{
 
   wayland.windowManager.hyprland.settings = {
     # MacBook Pro monitor configuration

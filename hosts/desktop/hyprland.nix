@@ -1,6 +1,16 @@
-{ pkgs, ... }: {
-  # Desktop-specific Hyprland configuration
-  # This file contains overrides and additions specific to the desktop setup
+{ pkgs, ... }:
+
+# ██╗  ██╗██╗   ██╗██████╗ ██████╗ ██╗      █████╗ ███╗   ██╗██████╗     ██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗
+# ██║  ██║╚██╗ ██╔╝██╔══██╗██╔══██╗██║     ██╔══██╗████╗  ██║██╔══██╗    ██╔══██╗██╔════╝██╔════╝██║ ██╔╝╚══██╔══╝██╔═══██╗██╔══██╗
+# ███████║ ╚████╔╝ ██████╔╝██████╔╝██║     ███████║██╔██╗ ██║██║  ██║    ██║  ██║█████╗  ███████╗█████╔╝    ██║   ██║   ██║██████╔╝
+# ██╔══██║  ╚██╔╝  ██╔═══╝ ██╔══██╗██║     ██╔══██║██║╚██╗██║██║  ██║    ██║  ██║██╔══╝  ╚════██║██╔═██╗    ██║   ██║   ██║██╔═══╝
+# ██║  ██║   ██║   ██║     ██║  ██║███████╗██║  ██║██║ ╚████║██████╔╝    ██████╔╝███████╗███████║██║  ██╗   ██║   ╚██████╔╝██║
+# ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝     ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝
+#
+# Desktop-specific Hyprland configuration
+# This file contains overrides and additions specific to the desktop setup
+
+{
 
   wayland.windowManager.hyprland.settings = {
     # Desktop monitor configuration
@@ -78,10 +88,8 @@
       # "workspace 1, class:^(firefox)$"
       # "workspace 2, class:^(code)$"
 
-      # MixingStation - ensure it floats with titlebar visible below waybar
-      "float, class:^(d)$, title:^(Mixing Station).*"
-      "move 0 40, class:^(d)$, title:^(Mixing Station).*"
-      "size 2560 1400, class:^(d)$, title:^(Mixing Station).*"
+      # MixingStation - ensure it tiles like other windows (not floating)
+      "tile, class:^(d)$"
     ];
 
     # Workspace assignment for multi-monitor (if applicable)
