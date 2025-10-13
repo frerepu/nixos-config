@@ -63,6 +63,9 @@
       "$mainMod SHIFT, M, exec, hyprctl keyword monitor DP-1,disable"
       "$mainMod CTRL, M, exec, hyprctl keyword monitor DP-1,2560x1440@144,0x0,1"
 
+      # MixingStation - force kill if Super+Shift+C doesn't work
+      "$mainMod SHIFT ALT, C, exec, pkill -9 -f mixing-station"
+
       # Brightness control for external monitors (if supported)
       # Uncomment and adjust if you have supported external monitors
       # ", XF86MonBrightnessUp, exec, ddcutil setvcp 10 + 10"
@@ -74,6 +77,11 @@
       # Example: Force certain apps to specific monitors
       # "workspace 1, class:^(firefox)$"
       # "workspace 2, class:^(code)$"
+
+      # MixingStation - ensure it floats with titlebar visible below waybar
+      "float, class:^(d)$, title:^(Mixing Station).*"
+      "move 0 40, class:^(d)$, title:^(Mixing Station).*"
+      "size 2560 1400, class:^(d)$, title:^(Mixing Station).*"
     ];
 
     # Workspace assignment for multi-monitor (if applicable)
