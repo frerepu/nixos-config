@@ -1,3 +1,13 @@
+# ██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗
+# ██╔══██╗██╔════╝██╔════╝██║ ██╔╝╚══██╔══╝██╔═══██╗██╔══██╗
+# ██║  ██║█████╗  ███████╗█████╔╝    ██║   ██║   ██║██████╔╝
+# ██║  ██║██╔══╝  ╚════██║██╔═██╗    ██║   ██║   ██║██╔═══╝
+# ██████╔╝███████╗███████║██║  ██╗   ██║   ╚██████╔╝██║
+# ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝
+#
+# Shared desktop configuration for all graphical hosts
+# This includes display managers, audio, Hyprland, and common desktop services
+
 { config, lib, pkgs, inputs, ... }: {
   # Shared desktop configuration for all graphical hosts
   # This includes display managers, audio, Hyprland, and common desktop services

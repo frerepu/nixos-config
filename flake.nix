@@ -1,3 +1,13 @@
+# ███████╗██╗      █████╗ ██╗  ██╗███████╗
+# ██╔════╝██║     ██╔══██╗██║ ██╔╝██╔════╝
+# █████╗  ██║     ███████║█████╔╝ █████╗
+# ██╔══╝  ██║     ██╔══██║██╔═██╗ ██╔══╝
+# ██║     ███████╗██║  ██║██║  ██╗███████╗
+# ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
+#
+# Main flake configuration with mkHost helper
+# Multi-host NixOS configuration with DRY architecture
+
 {
   description = "My NixOS configurations";
   inputs = {
@@ -11,13 +21,15 @@
   outputs = { self, nixpkgs-unstable, home-manager, catppuccin, ... }@inputs:
     let
       system = "x86_64-linux";
-    in {
-      nixosConfigurations = {
-        desktop = nixpkgs-unstable.lib.nixosSystem {
+
+      # Helper function to create a NixOS host configuration
+      mkHost = { hostname, hostConfig, homeConfig }:
+        nixpkgs-unstable.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            ./desktop-configuration.nix
+            hostConfig
+            ./hosts/common/default.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -26,7 +38,7 @@
                 extraSpecialArgs = { inherit inputs; };
                 users.faelterman = { pkgs, ... }: {
                   imports = [
-                    ./hosts/desktop/home.nix
+                    homeConfig
                     catppuccin.homeModules.catppuccin
                   ];
                 };
@@ -34,26 +46,17 @@
             }
           ];
         };
-        mbp15 = nixpkgs-unstable.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./mbp15-configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; };
-                users.faelterman = { pkgs, ... }: {
-                  imports = [
-                    ./hosts/mbp15/home.nix
-                    catppuccin.homeModules.catppuccin
-                  ];
-                };
-              };
-            }
-          ];
+    in {
+      nixosConfigurations = {
+        desktop = mkHost {
+          hostname = "desktop";
+          hostConfig = ./hosts/desktop/default.nix;
+          homeConfig = ./hosts/desktop/home.nix;
+        };
+        mbp15 = mkHost {
+          hostname = "mbp15";
+          hostConfig = ./hosts/mbp15/default.nix;
+          homeConfig = ./hosts/mbp15/home.nix;
         };
       };
     };

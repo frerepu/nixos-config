@@ -1,4 +1,4 @@
-# =Ö **Complete MacBook Pro NixOS Deployment Guide**
+# ðŸ“– **Complete MacBook Pro NixOS Deployment Guide**
 
 ## **Phase 1: Pre-Installation Preparation**
 
@@ -125,23 +125,58 @@ Make sure the hardware.nix looks like this:
 }
 ```
 
-### **3.3 Create Missing Files**
-```bash
-# Create the main mbp15 configuration if it doesn't exist
-sudo nano /mnt/etc/nixos/mbp15-configuration.nix
-```
+### **3.3 Verify Host Configuration**
 
-Content:
+The new modular structure means you don't need to create separate top-level config files! Just ensure your `hosts/mbp15/default.nix` looks like this:
+
 ```nix
-# mbp15-configuration.nix
-{ config, pkgs, ... }:
-{
+{ config, pkgs, inputs, ... }: {
   imports = [
-    ./hosts/common/default.nix
-    ./hosts/mbp15/default.nix
+    ./hardware.nix
+    ../common/desktop.nix  # Shared desktop configuration
   ];
+
+  # Host-specific configuration
+  networking.hostName = "mbp15";
+
+  # MacBook Pro specific packages
+  environment.systemPackages = with pkgs; [
+    tlp
+    powertop
+    acpi
+    brightnessctl
+  ];
+
+  # Power management
+  services.tlp = {
+    enable = true;
+    settings = {
+      TLP_DEFAULT_MODE = "BAT";
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      START_CHARGE_THRESH_BAT0 = 20;
+      STOP_CHARGE_THRESH_BAT0 = 80;
+    };
+  };
+
+  # Laptop-specific input configuration
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      naturalScrolling = true;
+      tapping = true;
+      clickMethod = "clickfinger";
+      accelProfile = "adaptive";
+    };
+  };
 }
 ```
+
+The `mkHost` helper in `flake.nix` automatically:
+- Imports `hosts/common/default.nix` (base system)
+- Sets up home-manager
+- Applies catppuccin theming
+- Wires everything together
 
 ## **Phase 4: Set Up Git Configuration**
 
@@ -170,6 +205,7 @@ sudo nano /mnt/etc/nixos/hosts/mbp15/default.nix
 ### **5.1 Install the System**
 ```bash
 # Install NixOS with your configuration
+# The mkHost helper means you just use the host name directly
 sudo nixos-install --flake /mnt/etc/nixos#mbp15
 
 # This will take a while...
@@ -201,7 +237,7 @@ sudo reboot
 # Boot into NixOS
 ```
 
-### **6.2 Set Up Symlink**
+### **6.2 Set Up Symlink (Optional but Recommended)**
 ```bash
 # Log in as faelterman
 # Create symlink from /etc/nixos to your dotfiles
@@ -217,7 +253,7 @@ sudo ln -sf /home/faelterman/.dotfiles /etc/nixos
 ### **6.3 Apply Your Configuration**
 ```bash
 # Now rebuild with your config
-sudo nixos-rebuild switch --flake /etc/nixos#mbp15
+sudo nixos-rebuild switch --flake ~/.dotfiles#mbp15
 
 # This will install all your packages and apply your config
 ```
@@ -258,53 +294,108 @@ git pull origin main
 # Test WiFi connectivity
 ```
 
-## **Phase 8: Troubleshooting Common Issues**
+## **Phase 8: Understanding the New Architecture**
 
-### **8.1 If WiFi Doesn't Work**
+### **8.1 Three-Layer System**
+
+Your configuration now uses a clean three-layer architecture:
+
+1. **Base System** (`hosts/common/default.nix`)
+   - Networking, fonts, base packages
+   - Tailscale, SSH, common services
+   
+2. **Desktop Environment** (`hosts/common/desktop.nix`)
+   - Hyprland, SDDM, audio (PipeWire)
+   - XDG portals, environment variables
+   - Shared across all graphical hosts
+
+3. **Host-Specific** (`hosts/mbp15/default.nix`)
+   - Hardware configuration
+   - Power management (TLP)
+   - Laptop-specific features
+
+### **8.2 The mkHost Helper**
+
+The `flake.nix` uses a helper function to eliminate duplication:
+
+```nix
+mkHost = { hostname, hostConfig, homeConfig }:
+  nixpkgs-unstable.lib.nixosSystem {
+    # Automatically wires everything together
+  };
+```
+
+This means:
+- No need for separate `mbp15-configuration.nix` files
+- No duplicate home-manager setup
+- Just call `mkHost` with your paths
+
+### **8.3 Making Changes**
+
+To customize your system:
+
+- **System-wide changes**: Edit `hosts/common/default.nix`
+- **Desktop changes**: Edit `hosts/common/desktop.nix`
+- **Laptop-specific**: Edit `hosts/mbp15/default.nix`
+- **Hyprland overrides**: Edit `hosts/mbp15/hyprland.nix`
+
+## **Phase 9: Troubleshooting Common Issues**
+
+### **9.1 If WiFi Doesn't Work**
 ```bash
 # Check network interfaces
 ip link show
 
-# Update your config with correct interface
-sudo nano /etc/nixos/hosts/mbp15/default.nix
-
-# Change this line if needed:
-# networking.interfaces.wlp3s0.useDHCP = true;  # or whatever your interface is
+# NetworkManager is enabled in common config
+# Just connect via GUI or nmtui
+nmtui
 ```
 
-### **8.2 If Display Issues**
+### **9.2 If Display Issues**
 ```bash
 # Check available resolutions
-xrandr  # or hyprctl monitors
+hyprctl monitors
 
 # Update hyprland config accordingly
+nano ~/.dotfiles/hosts/mbp15/hyprland.nix
 ```
 
-### **8.3 If Build Fails**
+### **9.3 If Build Fails**
 ```bash
 # Check the error and fix syntax
-sudo nixos-rebuild switch --flake /etc/nixos#mbp15 --show-trace
+sudo nixos-rebuild switch --flake ~/.dotfiles#mbp15 --show-trace
 
 # Common issues:
 # - Missing comma in nix files
 # - Wrong file paths
-# - Network interface names
+# - Hardware-specific driver issues
 ```
+
+### **9.4 Broadcom WiFi Driver Issues**
+
+If you see errors about `broadcom-sta` being insecure, this is a hardware-specific issue. You can:
+
+1. Use an external USB WiFi adapter
+2. Allow the insecure package (not recommended)
+3. Use a different WiFi driver if available
 
 ## **Quick Summary Commands:**
 ```bash
 # After fresh install, the key commands are:
 sudo ln -sf /home/faelterman/.dotfiles /etc/nixos
-sudo nixos-rebuild switch --flake /etc/nixos#mbp15
+sudo nixos-rebuild switch --flake ~/.dotfiles#mbp15
+
+# The mkHost helper handles all the complexity!
 ```
 
 ---
 
-This guide covers everything from USB creation to final configuration. The key points for your setup:
+## **Key Improvements in This Setup**
 
-1. **Your dotfiles become `/etc/nixos`** via symlink
-2. **Hardware detection** is automatic but you copy it to the right place
-3. **Flake command** uses `#mbp15` to build the MacBook Pro specific config
-4. **All your settings** (Hyprland, themes, packages) will be automatically applied
+1. **No duplicate configuration files** - Everything is modular
+2. **mkHost helper** - Zero boilerplate for new hosts
+3. **Three-layer architecture** - Clear separation of concerns
+4. **DRY principle** - ~200 lines of duplication eliminated
+5. **Easy maintenance** - Change once, apply everywhere
 
-The most important step is Phase 6.2 where you create the symlink - this is what makes your dotfiles become the system configuration!
+The most important insight: Your configuration now follows the "hosts/common + host-specific" pattern, with the `mkHost` helper automating all the wiring!
