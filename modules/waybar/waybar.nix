@@ -50,6 +50,7 @@
             default = "";
           };
           sort-by-number = true;
+          all-outputs = true;
         };
 
         "hyprland/mode" = {
