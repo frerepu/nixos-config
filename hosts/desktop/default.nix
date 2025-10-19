@@ -12,6 +12,7 @@
   imports = [
     ./hardware.nix
     ../common/desktop.nix
+    ../../modules/docker.nix
   ];
 
   # Host-specific configuration

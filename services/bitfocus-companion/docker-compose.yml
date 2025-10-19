@@ -1,0 +1,19 @@
+services:
+  companion:
+    image: ghcr.io/bitfocus/companion/companion:latest
+    container_name: bitfocus-companion
+    restart: unless-stopped
+    ports:
+      - "8000:8000"    # Web interface
+    volumes:
+      - companion-data:/companion
+    environment:
+      - TZ=Europe/Brussels
+    # If you need USB device access for Stream Deck, uncomment:
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+    privileged: true
+
+volumes:
+  companion-data:
+    driver: local
