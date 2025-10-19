@@ -56,6 +56,7 @@
     git
     tailscale
     zsh
+    wtype  # Wayland text input tool for typing from Companion
 
   ];
 
