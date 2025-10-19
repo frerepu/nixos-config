@@ -14,6 +14,7 @@
   home.packages = with pkgs; [
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
+        redhat.vscode-yaml
         bbenoist.nix
         esbenp.prettier-vscode
         ms-python.python
