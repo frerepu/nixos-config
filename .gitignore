@@ -1,3 +1,17 @@
 hardware-configuration.nix
 result*
 .telemetry
+
+# Backup files
+*.bak
+*~
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
