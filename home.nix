@@ -102,6 +102,9 @@ in
 
     # Theming
     catppuccin
+
+    # 3D Printing
+    orca-slicer
   ];
 
 
