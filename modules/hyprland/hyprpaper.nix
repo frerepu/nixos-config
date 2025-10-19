@@ -8,11 +8,11 @@
 {
   services.hyprpaper = {
     enable = true;
-    settings= {
-    	ipc = "on";
-	    splash =  false;
-      preload = ["/home/faelterman/.dotfiles/modules/hyprland/wp.jpg"];
-      wallpaper = ["eDP-1, /home/faelterman/.dotfiles/modules/hyprland/wp.jpg"];
+    settings = {
+      ipc = "on";
+      splash = false;
+      preload = ["/home/faelterman/.dotfiles/wallpapers/wp.jpg"];
+      wallpaper = ["eDP-1, /home/faelterman/.dotfiles/wallpapers/wp.jpg"];
     };
   };
 }
