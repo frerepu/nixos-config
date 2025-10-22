@@ -27,10 +27,4 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPLSC7B0/1ZFrdVTZa+yhquy674nw+JTw0oT5/+/oKGo faelterman@nixos"
     ];
   };
-
-  # Desktop-specific SDDM background (optional, can be uncommented)
-  # catppuccin.sddm = {
-  #   background = "/home/faelterman/.config/background/wallhaven-8x16mo.png";
-  #   loginBackground = true;
-  # };
 }

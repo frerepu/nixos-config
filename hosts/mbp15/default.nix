@@ -30,12 +30,6 @@
     brightnessctl
   ];
 
-  # MacBook Pro specific SDDM background
-  catppuccin.sddm = {
-    background = "/home/faelterman/.config/background/wallhaven-8x16mo.png";
-    loginBackground = true;
-  };
-
   # Power management for MacBook Pro
   services.tlp = {
     enable = true;

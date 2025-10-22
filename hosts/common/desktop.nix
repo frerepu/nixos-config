@@ -14,6 +14,7 @@
 
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
+    ../../modules/sddm.nix
   ];
 
   # Desktop services
@@ -27,23 +28,6 @@
       layout = "be";
       options = "";
     };
-  };
-
-  # SDDM configuration
-  environment.systemPackages = [
-    pkgs.catppuccin-sddm
-  ];
-
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    package = pkgs.kdePackages.sddm;
-  };
-
-  catppuccin.sddm = {
-    enable = true;
-    flavor = "mocha";
-    accent = "mauve";
   };
 
   services.displayManager = {
@@ -105,15 +89,4 @@
   };
 
   environment.pathsToLink = [ "/share/wayland-sessions" ];
-
-  # Activation scripts
-  system.activationScripts = {
-    sddm-session = {
-      text = ''
-        mkdir -p /usr/share/wayland-sessions
-        ln -sfn ${pkgs.hyprland}/share/wayland-sessions/hyprland.desktop /usr/share/wayland-sessions/
-      '';
-      deps = [];
-    };
-  };
 }
