@@ -142,7 +142,7 @@ in
   #  /etc/profiles/per-user/faelterman/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    TERM = "xterm-256color";
+    TERM = "xterm-kitty";
   };
 
   programs.bash = {
