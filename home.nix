@@ -78,6 +78,7 @@ in
     webcord
     mumble
     element-desktop
+    spotify
 
     # Hyprland ecosystem
     hyprpaper
