@@ -14,7 +14,8 @@
 
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
-    ../../modules/sddm.nix
+    #../../modules/sddm.nix
+    ../../modules/greetd.nix
   ];
 
   # Desktop services
@@ -30,11 +31,6 @@
     };
   };
 
-  services.displayManager = {
-    defaultSession = "hyprland";
-    sessionPackages = [ pkgs.hyprland ];
-  };
-
   # Audio configuration
   console.keyMap = "be-latin1";
   services.pulseaudio.enable = false;
@@ -46,11 +42,9 @@
     pulse.enable = true;
   };
 
-  # Hyprland configuration
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
+  # Hyprland is configured via home-manager (modules/hyprland/)
+  # Enable XWayland support system-wide
+  programs.hyprland.enable = true;
 
   security.pam.services.hyprlock = {};
 
