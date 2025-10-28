@@ -30,6 +30,7 @@
         kb_rules = lib.mkDefault "";
         follow_mouse = lib.mkDefault 1;
         sensitivity = lib.mkDefault 0;
+        numlock_by_default = lib.mkDefault true;
       };
 
       # Common general settings (can be overridden by host-specific)
@@ -90,6 +91,7 @@
         "systemctl --user start hyprpolkitagent"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
+        "hyprctl keyword input:numlock_by_default true"
       ];
       # Add these variable definitions
         "$terminal" = "kitty";
