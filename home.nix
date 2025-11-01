@@ -40,6 +40,7 @@ in
     ./modules/figlet.nix
     ./modules/mixingstation.nix
     ./modules/vscode.nix
+    ./modules/unetbootin.nix
   ];
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
@@ -69,7 +70,7 @@ in
     nodejs_20
     claude-code
     zed-editor
-
+    
     # Web browsers
     chromium
 
