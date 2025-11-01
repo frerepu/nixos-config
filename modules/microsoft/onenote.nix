@@ -22,7 +22,7 @@
     genericName = "Note Taking";
     exec = "onenote";
     icon = "onenote";
-    categories = [ "Office" "Notes" ];
+    categories = [ "Office" "TextEditor" ];
     type = "Application";
   };
 
