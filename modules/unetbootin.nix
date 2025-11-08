@@ -11,7 +11,11 @@
     unetbootin
     (writeScriptBin "unetbootin-gui" ''
       #!${pkgs.bash}/bin/bash
-      ${pkgs.polkit}/bin/pkexec ${pkgs.unetbootin}/bin/unetbootin
+      /run/wrappers/bin/pkexec env \
+        DISPLAY="$DISPLAY" \
+        WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
+        XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" \
+        ${pkgs.unetbootin}/bin/unetbootin
     '')
   ];
 
