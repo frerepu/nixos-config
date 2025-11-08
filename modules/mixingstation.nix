@@ -27,7 +27,7 @@ let
     # Note: This fetches the latest version, so the hash may need updating periodically
     src = pkgs.fetchurl {
       url = "https://mixingstation.app/backend/api/web/download/update/mixing-station-pc/release";
-      sha256 = "sha256-9rFnBnlm/wYPvTzCTG6eEpZmQ7hX7ziQcgWbKyq5xaI=";
+      sha256 = "sha256-ybbjQ/MCbYDkezSaolSkTNndv3Qsrsb6sNH9WKudvHw=";
     };
 
     # Build-time dependencies

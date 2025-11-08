@@ -1,15 +1,15 @@
 #  ██████╗ ██╗████████╗
 # ██╔════╝ ██║╚══██╔══╝
-# ██║  ███╗██║   ██║   
-# ██║   ██║██║   ██║   
-# ╚██████╔╝██║   ██║   
+# ██║  ███╗██║   ██║
+# ██║   ██║██║   ██║
+# ╚██████╔╝██║   ██║
 #  ╚═════╝ ╚═╝   ╚═╝
-{  
-  programs.git ={
+{
+  programs.git = {
     enable = true;
-    userName = "frerepu";
-    userEmail = "frederic@republiekbrugge.be";
-    extraConfig = {
+    settings = {
+      user.name = "frerepu";
+      user.email = "frederic@republiekbrugge.be";
       init.defaultBranch = "main";
     };
   };
