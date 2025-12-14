@@ -15,13 +15,13 @@
     spotify-player  # Terminal UI with full feature parity
   ];
 
-  # Optional: Enable Spotifyd daemon for headless playback control
-  # Uncomment to enable:
+  # Spotifyd daemon for headless playback control
+  # Username managed by agenix, password by rbw
   services.spotifyd = {
     enable = true;
     settings = {
       global = {
-        username = "1118565451";
+        username_cmd = "cat /run/agenix/spotify-username";  # Get username from agenix
         password_cmd = "rbw get spotify";  # Use rbw password manager
         backend = "pulseaudio";
         device_name = "NixOS Spotify";
