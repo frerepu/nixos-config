@@ -42,6 +42,7 @@ in
     ./modules/vscode.nix
     ./modules/unetbootin.nix
     ./modules/gnome-disks.nix
+    ./modules/spotify.nix
   ];
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
@@ -80,7 +81,6 @@ in
     webcord
     mumble
     element-desktop
-    spotify
 
     # Hyprland ecosystem
     hyprpaper
