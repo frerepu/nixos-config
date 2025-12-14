@@ -8,10 +8,12 @@ This repository contains a modular NixOS configuration that supports:
 
 - **Multiple hosts** with shared and host-specific configurations
 - **DRY architecture** using helper functions to eliminate duplication
-- **Hyprland** window manager with host-optimized settings
+- **Hyprland** Wayland compositor with host-optimized settings
 - **Catppuccin** theming across all applications
-- **Home Manager** for user-space configuration
+- **Home Manager** for declarative user-space configuration
 - **Flake-based** setup for reproducible builds
+- **Complete desktop environment** with Waybar, Wofi, and modern viewers
+- **System services** including Tailscale, Docker, and OneDrive integration
 
 ## 🖥️ Current Hosts
 
@@ -59,7 +61,7 @@ This repository contains a modular NixOS configuration that supports:
 The configuration uses a **three-layer architecture**:
 
 1. **`hosts/common/default.nix`** - Base system configuration (networking, fonts, base packages)
-2. **`hosts/common/desktop.nix`** - Shared desktop environment (Hyprland, SDDM, audio, XDG portals)
+2. **`hosts/common/desktop.nix`** - Shared desktop environment (Hyprland, greetd, audio, XDG portals)
 3. **`hosts/{hostname}/default.nix`** - Host-specific overrides (hardware, hostname, special features)
 
 ### DRY with mkHost Helper
@@ -239,7 +241,45 @@ git config --global user.email "your.email@example.com"
 ### Theming
 - **Catppuccin** theme across all applications
 - **Consistent** colors and fonts
-- **SDDM** login manager with Catppuccin theming
+- **greetd** login manager with Catppuccin theming
+
+### File Management & Viewers
+- **Thunar** file manager with plugins:
+  - Archive support (thunar-archive-plugin)
+  - Volume management (thunar-volman)
+  - Thumbnail generation via tumbler service
+- **Zathura** - Lightweight, keyboard-driven PDF viewer with Wayland support
+- **imv** - Native Wayland image viewer for all common formats
+- **XDG MIME associations** - Automatic file type handling with default applications
+
+### Desktop Environment
+- **Hyprland** - Dynamic tiling Wayland compositor
+- **Waybar** - Customizable status bar with system information
+- **Wofi** - Application launcher and dmenu replacement
+- **SwayNotificationCenter** - Notification daemon and center
+- **wlogout** - Logout menu with system actions
+- **Hyprland utilities**:
+  - hyprpaper - Wallpaper manager
+  - hyprpicker - Color picker
+  - hyprshot - Screenshot tool
+  - hyprlock - Screen locker
+  - hypridle - Idle management
+  - hyprsunset - Blue light filter
+
+### Applications
+- **Development**: VS Code, Zed Editor, Claude Code, Node.js
+- **Browsers**: Zen Browser (default), Chromium
+- **Communication**: Teams for Linux, Webcord (Discord), Mumble, Element
+- **Productivity**: Microsoft Office (PWAs), OneDrive
+- **Media**: Spotify
+- **Utilities**: Orca Slicer (3D printing), Yazi (terminal file manager)
+
+### System Services
+- **PipeWire** - Modern audio/video server
+- **Tailscale** - Mesh VPN with exit node support
+- **Flatpak** - Universal package management
+- **OneDrive** - Cloud storage integration
+- **Docker** - Containerization (desktop host only)
 
 ## 🔍 Useful Commands
 

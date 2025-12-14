@@ -87,6 +87,9 @@
 
   ];
 
+  # Enable zsh system-wide (required when using it as default shell)
+  programs.zsh.enable = true;
+
   # Common services
   services.tailscale = {
     enable = true;
@@ -155,6 +158,7 @@
     isNormalUser = true;
     description = "Frederic Aelterman";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
   };
 
   system.stateVersion = "24.11";
