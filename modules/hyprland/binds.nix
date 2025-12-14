@@ -15,7 +15,7 @@
       "$mainMod, Return, exec, $terminal"
       "$mainMod, C, killactive, "
       "$mainMod, M, exit,"
-      "$mainMod, E, exec, $fileManager"
+      "$mainMod, E, exec, $filemanager"
       "$mainMod, B, exec, $browser"
       "$mainMod, F, togglefloating,"
       "$mainMod, SPACE, exec, $menu"
