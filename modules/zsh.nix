@@ -5,17 +5,13 @@
 # ███████╗███████║██║  ██║
 # ╚══════╝╚══════╝╚═╝  ╚═╝
 { config, pkgs, ... }:
+let
+  personal = import ../personal.nix;
+in
 {
   programs.zsh = {
     enable = true;
-    shellAliases = {
-      ll = "ls -l";
-      ".." = "cd ..";
-      c = "clear";
-      ls = "ls -lah --color=auto";
-      cat = "bat";
-      figletas = "figlet -f ~/.local/share/figlet/fonts/ansi_shadow.flf";
-    };
+    shellAliases = personal.shellAliases;
     initExtra = ''
       eval "$(starship init zsh)"
     '';

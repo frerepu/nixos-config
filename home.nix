@@ -10,16 +10,7 @@
 
 { config, pkgs, ... }:
 let
-  myAliases = {
-    # You can add your own shell aliases here.
-    ll = "ls -l";
-    ".." = "cd ..";
-    c = "clear";
-    ls = "ls -lah --color=auto";
-    cat = "bat";
-    figletas = "figlet -f ~/.local/share/figlet/fonts/ansi_shadow.flf";
-  };
-  system = "x86_64-linux";
+  personal = import ./personal.nix;
 in
 {
   home = {
@@ -150,7 +141,7 @@ in
 
   programs.bash = {
     enable = true;
-    shellAliases = myAliases;
+    shellAliases = personal.shellAliases;
     bashrcExtra = ''
       eval "$(starship init bash)"
     '';
