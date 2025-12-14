@@ -126,6 +126,14 @@
 
 ---
 
+## View Options
+
+| Key | Action | Note |
+|-----|--------|------|
+| `.` | Toggle hidden files/folders visibility | **Enabled by default** in your config |
+
+---
+
 ## Tabs
 
 **⚠️ AZERTY Note**: Numbers 1-9 require Shift key!
