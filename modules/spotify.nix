@@ -12,6 +12,7 @@
 {
   home.packages = with pkgs; [
     spotify
+    spotify-player  # Terminal UI with full feature parity
   ];
 
   # Optional: Enable Spotifyd daemon for headless playback control
@@ -31,9 +32,4 @@
       };
     };
   };
-
-  # Optional: Add spotify-tui for terminal UI control
-  home.packages = with pkgs; [
-    spotify-tui
-  ];
 }
