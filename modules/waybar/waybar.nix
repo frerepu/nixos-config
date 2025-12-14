@@ -31,11 +31,11 @@
           "cpu"
           "memory"
           "temperature"
-          "backlight"
+          # "backlight"  # Laptop-only - add in host-specific config
           "keyboard-state"
           "hyprland/language"
-          "battery"
-          "battery#bat2"
+          # "battery"  # Laptop-only - add in host-specific config
+          # "battery#bat2"  # Laptop-only - add in host-specific config
           "clock"
           "tray"
           "custom/power"
