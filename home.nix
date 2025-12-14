@@ -40,6 +40,9 @@ in
     ./modules/figlet.nix
     ./modules/mixingstation.nix
     ./modules/vscode.nix
+    ./modules/unetbootin.nix
+    ./modules/gnome-disks.nix
+    ./modules/spotify.nix
   ];
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
@@ -69,7 +72,7 @@ in
     nodejs_20
     claude-code
     zed-editor
-
+    
     # Web browsers
     chromium
 
@@ -78,7 +81,6 @@ in
     webcord
     mumble
     element-desktop
-    spotify
 
     # Hyprland ecosystem
     hyprpaper

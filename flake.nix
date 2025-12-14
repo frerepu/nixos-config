@@ -17,8 +17,12 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     catppuccin.url = "github:catppuccin/nix";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
-  outputs = { self, nixpkgs-unstable, home-manager, catppuccin, ... }@inputs:
+  outputs = { self, nixpkgs-unstable, home-manager, catppuccin, agenix, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -30,6 +34,7 @@
           modules = [
             hostConfig
             ./hosts/common/default.nix
+            agenix.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager = {

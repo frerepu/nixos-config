@@ -7,6 +7,7 @@
 { pkgs, ... }:
 
 let
+  personal = import ../personal.nix;
   rbw-terminal = pkgs.writeShellScriptBin "rbw-terminal" ''
     # First, try to unlock rbw (will do nothing if already unlocked)
     ${pkgs.rbw}/bin/rbw unlock
@@ -34,8 +35,8 @@ in
   programs.rbw = {
     enable = true;
     settings = {
-      email = "frederic.aelterman@gmail.com";
-      base_url = "https://bitwarden.faelterman.be";
+      email = personal.bitwarden.email;
+      base_url = personal.bitwarden.baseUrl;
       lock_timeout = 86400;
       sync_interval = 600;
       pinentry = pkgs.pinentry-tty;

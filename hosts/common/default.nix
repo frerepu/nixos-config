@@ -12,6 +12,18 @@
   # Common base configuration
   imports = [ ];  # We'll move hardware-specific imports to host configs
 
+  # Agenix secrets configuration
+  age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+
+  age.secrets.tailscale-authkey = {
+    file = ../../secrets/tailscale-authkey.age;
+  };
+  age.secrets.spotify-username = {
+    file = ../../secrets/spotify-username.age;
+    mode = "444";  # World-readable as it's not sensitive
+    owner = "faelterman";
+  };
+
   # System-wide settings
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -64,7 +76,7 @@
   services.tailscale = {
     enable = true;
     openFirewall = true;
-    authKeyFile = "/home/faelterman/secrets/tsauthkeyfile";
+    authKeyFile = config.age.secrets.tailscale-authkey.path;
     useRoutingFeatures = "both";
     #interfaceName = "userspace-networking";
     extraUpFlags = [
@@ -92,7 +104,7 @@
     nerd-fonts.droid-sans-mono
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     liberation_ttf
     dejavu_fonts
   ];

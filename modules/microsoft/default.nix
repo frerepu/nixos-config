@@ -7,8 +7,11 @@
 
 {
   imports = [
-     ./excel.nix
-     ./outlook.nix
-     ./word.nix
+    ./excel.nix
+    ./outlook.nix
+    ./word.nix
+    ./powerpoint.nix
+    ./sharepoint.nix
+    ./onenote.nix
   ];
 }

@@ -8,7 +8,11 @@
 # Desktop host configuration
 # Minimal overrides - most config inherited from common modules
 
-{ config, lib, pkgs, inputs, ... }: {
+{ config, lib, pkgs, inputs, ... }:
+let
+  personal = import ../../personal.nix;
+in
+{
   imports = [
     ./hardware.nix
     ../common/desktop.nix
@@ -17,14 +21,14 @@
   ];
 
   # Host-specific configuration
-  networking.hostName = "nixos";
+  networking.hostName = "nixos-desktop";
   networking.interfaces.enp4s0f0.useDHCP = true;
 
   # Enable Hyprland remote control via SSH for Bitfocus Companion
   services.hyprland-control = {
     enable = true;
     sshAuthorizedKeys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPLSC7B0/1ZFrdVTZa+yhquy674nw+JTw0oT5/+/oKGo faelterman@nixos"
+      personal.ssh.desktopKey
     ];
   };
 }

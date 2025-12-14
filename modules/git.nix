@@ -1,15 +1,19 @@
 #  ██████╗ ██╗████████╗
 # ██╔════╝ ██║╚══██╔══╝
-# ██║  ███╗██║   ██║   
-# ██║   ██║██║   ██║   
-# ╚██████╔╝██║   ██║   
+# ██║  ███╗██║   ██║
+# ██║   ██║██║   ██║
+# ╚██████╔╝██║   ██║
 #  ╚═════╝ ╚═╝   ╚═╝
-{  
-  programs.git ={
+{ ... }:
+let
+  personal = import ../personal.nix;
+in
+{
+  programs.git = {
     enable = true;
-    userName = "frerepu";
-    userEmail = "frederic@republiekbrugge.be";
-    extraConfig = {
+    settings = {
+      user.name = personal.git.userName;
+      user.email = personal.git.userEmail;
       init.defaultBranch = "main";
     };
   };

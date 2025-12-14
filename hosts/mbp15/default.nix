@@ -42,6 +42,21 @@
     };
   };
 
+  # Bluetooth support
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;
+      };
+    };
+  };
+
+  # Bluetooth GUI applet (blueman)
+  services.blueman.enable = true;
+
   # Laptop-specific input configuration
   services.libinput = {
     enable = true;

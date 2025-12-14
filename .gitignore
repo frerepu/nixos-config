@@ -2,6 +2,14 @@ hardware-configuration.nix
 result*
 .telemetry
 
+# Secrets - never commit unencrypted sensitive data
+secrets/*
+!secrets/*.nix
+!secrets/*.age
+*.secret
+*.key
+tsauthkeyfile
+
 # Backup files
 *.bak
 *~
