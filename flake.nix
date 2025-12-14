@@ -25,6 +25,7 @@
   outputs = { self, nixpkgs-unstable, home-manager, catppuccin, agenix, ... }@inputs:
     let
       system = "x86_64-linux";
+      pkgs = nixpkgs-unstable.legacyPackages.${system};
 
       # Helper function to create a NixOS host configuration
       mkHost = { hostname, hostConfig, homeConfig }:
@@ -51,6 +52,17 @@
             }
           ];
         };
+
+      # Helper function to create a standalone home-manager configuration
+      mkHomeConfig = { homeConfig }:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            homeConfig
+            catppuccin.homeModules.catppuccin
+          ];
+        };
     in {
       nixosConfigurations = {
         desktop = mkHost {
@@ -61,6 +73,17 @@
         mbp15 = mkHost {
           hostname = "mbp15";
           hostConfig = ./hosts/mbp15/default.nix;
+          homeConfig = ./hosts/mbp15/home.nix;
+        };
+      };
+
+      # Standalone home-manager configurations
+      # Usage: home-manager switch --flake .#faelterman@desktop
+      homeConfigurations = {
+        "faelterman@desktop" = mkHomeConfig {
+          homeConfig = ./hosts/desktop/home.nix;
+        };
+        "faelterman@mbp15" = mkHomeConfig {
           homeConfig = ./hosts/mbp15/home.nix;
         };
       };

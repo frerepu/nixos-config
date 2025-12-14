@@ -46,9 +46,6 @@
     };
   };
 
-  # Enable systemd resource accounting
-  systemd.enableCgroupAccounting = true;
-
   # Enable sysstat for system statistics collection
   services.sysstat.enable = true;
 }

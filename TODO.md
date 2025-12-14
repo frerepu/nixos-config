@@ -115,11 +115,26 @@ Add `devShells` output to flake for project-specific environments.
 - Node.js development shell
 - Rust development shell
 
-### 10. ⏳ Home-Manager Standalone Configuration
-**Status**: Pending
+### 10. ✅ Home-Manager Standalone Configuration
+**Status**: Completed
 **Impact**: Low - Flexibility
 
-Add `homeConfigurations` output for standalone home-manager usage (non-NixOS).
+Added `homeConfigurations` output for standalone home-manager usage (non-NixOS).
+
+**Files updated**:
+- `flake.nix` - Added `mkHomeConfig` helper and `homeConfigurations` output
+
+**Usage**:
+```bash
+# Switch to standalone home-manager config
+home-manager switch --flake /home/faelterman/.dotfiles#faelterman@desktop
+home-manager switch --flake /home/faelterman/.dotfiles#faelterman@mbp15
+```
+
+**Features**:
+- Standalone home-manager configurations for both desktop and mbp15
+- Includes Catppuccin theming
+- Can be used on non-NixOS systems or for testing home configs independently
 
 ### 11. ⏳ Backup Strategy Documentation
 **Status**: Pending
