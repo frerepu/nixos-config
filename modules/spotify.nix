@@ -8,7 +8,9 @@
 # Spotify music streaming client configuration
 
 { pkgs, ... }:
-
+let
+  personal = import ../personal.nix;
+in
 {
   home.packages = with pkgs; [
     spotify
@@ -26,7 +28,7 @@
         backend = "pulseaudio";
         device_name = "NixOS Spotify";
         bitrate = 320;
-        cache_path = "/home/faelterman/.cache/spotifyd";
+        cache_path = personal.paths.spotifydCache;
         volume_normalisation = true;
         normalisation_pregain = -10;
       };

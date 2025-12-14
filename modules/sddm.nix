@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
-
+let
+  personal = import ../personal.nix;
+in
 {
   # SDDM Display Manager Configuration
   services.displayManager.sddm = {
@@ -18,7 +20,7 @@
     enable = true;
     flavor = "mocha";
     accent = "mauve";
-    background = "/home/faelterman/.dotfiles/wallpapers/wp.jpg";
+    background = personal.paths.wallpaper;
     loginBackground = true;
   };
 

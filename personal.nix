@@ -8,6 +8,11 @@
     homeDirectory = "/home/faelterman";
   };
 
+  # Host-specific settings (override in host configs if needed)
+  system = {
+    isLaptop = false;  # Set to true for laptop hosts
+  };
+
   git = {
     userName = "frerepu";
     userEmail = "frederic@republiekbrugge.be";
@@ -28,5 +33,16 @@
     dotfiles = "/home/faelterman/.dotfiles";
     secrets = "/home/faelterman/secrets";
     wallpaper = "/home/faelterman/.dotfiles/wallpapers/wp.jpg";
+    spotifydCache = "/home/faelterman/.cache/spotifyd";
+  };
+
+  # Shell aliases shared across bash and zsh
+  shellAliases = {
+    ll = "ls -l";
+    ".." = "cd ..";
+    c = "clear";
+    ls = "ls -lah --color=auto";
+    cat = "bat";
+    figletas = "figlet -f ~/.local/share/figlet/fonts/ansi_shadow.flf";
   };
 }

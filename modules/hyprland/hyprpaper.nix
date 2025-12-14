@@ -5,14 +5,17 @@
 # ██║  ██║   ██║   ██║     ██║  ██║██║     ██║  ██║██║     ███████╗██║  ██║
 # ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝
 {config, pkgs, lib, ...}:
+let
+  personal = import ../../personal.nix;
+in
 {
   services.hyprpaper = {
     enable = true;
     settings = {
       ipc = "on";
       splash = false;
-      preload = ["/home/faelterman/.dotfiles/wallpapers/wp.jpg"];
-      wallpaper = ["eDP-1, /home/faelterman/.dotfiles/wallpapers/wp.jpg"];
+      preload = [personal.paths.wallpaper];
+      wallpaper = ["eDP-1, ${personal.paths.wallpaper}"];
     };
   };
 }
