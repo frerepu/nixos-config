@@ -52,7 +52,15 @@ in
     zoxide
     wev
     libnotify
-    
+
+    # Theming
+    (catppuccin-gtk.override {
+      accents = [ "mauve" ];
+      size = "standard";
+      tweaks = [ "rimless" ];
+      variant = "mocha";
+    })
+
     # File managers
     kitty
     nemo-with-extensions
@@ -96,9 +104,6 @@ in
     # Cloud storage
     onedrivegui
 
-    # Theming
-    catppuccin
-
     # 3D Printing
     orca-slicer
   ];
@@ -139,6 +144,7 @@ in
   #
   home.sessionVariables = {
     TERM = "xterm-kitty";
+    GTK_THEME = "catppuccin-mocha-mauve-standard+rimless";
   };
 
   programs.bash = {
@@ -162,12 +168,29 @@ in
         name = "JetBrainsMono";
         size = 11;
     };
+    theme = {
+      name = "catppuccin-mocha-mauve-standard+rimless";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "mauve" ];
+        size = "standard";
+        tweaks = [ "rimless" ];
+        variant = "mocha";
+      };
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
   };
 
+  # Enable dconf for GTK settings
+  dconf.enable = true;
+
   catppuccin.enable = true;
-  catppuccin.gtk = {
-    icon.enable = true;
-  };
+  catppuccin.flavor = "mocha";
+  catppuccin.accent = "mauve";
 
   # XDG MIME type associations
   xdg.mimeApps = {

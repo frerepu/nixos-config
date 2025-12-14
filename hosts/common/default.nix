@@ -30,6 +30,7 @@
   # System-wide settings
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 15;
 
   # Common networking setup
   networking.networkmanager.enable = true;
@@ -75,6 +76,16 @@
     ];
   };
 
+  # Automatic garbage collection and optimization
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
+  # Automatic Nix store optimization (deduplication)
+  nix.optimise.automatic = true;
+
 
   # Base system packages
   environment.systemPackages = with pkgs; [
@@ -104,13 +115,8 @@
     ];
   };
 
-  # USB auto-mount and file manager support
+  # USB auto-mount support
   services.udisks2.enable = true;
-  services.gvfs.enable = true;
-  programs.thunar.enable = true;
-  programs.thunar.plugins = with pkgs.xfce; [
-    thunar-volman
-  ];
 
   services.openssh.enable = true;
 

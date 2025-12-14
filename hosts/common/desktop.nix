@@ -21,6 +21,7 @@
   # Desktop services
   services.flatpak.enable = true;
   services.onedrive.enable = true;
+  programs.dconf.enable = true;  # Required for GTK settings
 
   # File manager and thumbnail generation
   programs.thunar.enable = true;
@@ -29,6 +30,7 @@
     thunar-volman
   ];
   services.tumbler.enable = true;
+  services.gvfs.enable = true;  # Virtual filesystem support for Thunar
 
   # X11/Display server configuration
   services.xserver = {
@@ -88,6 +90,8 @@
     EDITOR = "Visual Studio Code";
     BROWSER = "Zen Browser";
     TERMINAL = "kitty";
+    # GTK theming
+    GTK_THEME = "catppuccin-mocha-mauve-standard+rimless";
   };
 
   environment.pathsToLink = [ "/share/wayland-sessions" ];
