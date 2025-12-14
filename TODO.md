@@ -48,41 +48,61 @@ Added binary cache substituters for faster package downloads.
 - nix-community.cachix.org
 - hyprland.cachix.org
 
-### 5. ⏳ System Monitoring
-**Status**: Pending
+### 5. ✅ System Monitoring
+**Status**: Completed
 **Impact**: Medium - Better system visibility
 
-Add monitoring tools or automation (btop is installed but could add more).
+Added comprehensive system monitoring with automated disk space checks.
 
-**Ideas**:
-- System resource monitoring alerts
-- Disk space monitoring
-- Service health checks
+**Files created**:
+- `modules/monitoring.nix` - Monitoring tools and systemd services
 
-### 6. ⏳ Explicit Firewall Rules Documentation
-**Status**: Pending
+**Features added**:
+- System resource monitoring tools (htop, btop, iotop, iftop, nethogs)
+- Automated daily disk space monitoring with notifications
+- sysstat for system statistics collection
+
+### 6. ✅ Explicit Firewall Rules Documentation
+**Status**: Completed
 **Impact**: Medium - Security clarity
 
-Document all open ports and why they're needed.
+Documented all firewall rules with detailed comments explaining each port and interface.
 
-**Files to update**:
-- `hosts/common/default.nix` (add comments)
-- `modules/docker.nix`
-- `modules/hyprland-control.nix`
+**Files updated**:
+- `hosts/common/default.nix` - Comprehensive firewall documentation
+- `modules/hyprland-control.nix` - Added firewall usage note
 
 ## Low Priority
 
-### 7. ⏳ Flake Update Automation
-**Status**: Pending
+### 7. ✅ Flake Update Automation
+**Status**: Completed
 **Impact**: Low - Convenience
 
-Add systemd timer for weekly `nix flake update`.
+Implemented automated weekly flake updates with systemd timer.
 
-### 8. ⏳ CI/CD for Configuration Validation
-**Status**: Pending
+**Files created**:
+- `modules/flake-update.nix` - Systemd service and timer for weekly updates
+
+**Features**:
+- Weekly automated flake updates
+- Logging to ~/.flake-update.log
+- Desktop notifications when updates complete
+- Randomized delay to avoid all updates at same time
+
+### 8. ✅ CI/CD for Configuration Validation
+**Status**: Completed
 **Impact**: Low - Catch errors early
 
-Add GitHub Actions to run `nix flake check` on commits.
+Added GitHub Actions workflow for automatic configuration validation.
+
+**Files created**:
+- `.github/workflows/nix-check.yml` - CI workflow
+
+**Features**:
+- Runs `nix flake check` on all commits and PRs
+- Builds both desktop and mbp15 configurations
+- Uses Nix cache for faster builds
+- Validates configuration before deployment
 
 ### 9. ⏳ Development Shells
 **Status**: Pending

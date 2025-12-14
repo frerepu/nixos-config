@@ -10,7 +10,10 @@
 
 { config, pkgs, ... }: {
   # Common base configuration
-  imports = [ ];  # We'll move hardware-specific imports to host configs
+  imports = [
+    ../../modules/monitoring.nix
+    ../../modules/flake-update.nix
+  ];
 
   # Agenix secrets configuration
   age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
@@ -121,13 +124,30 @@
     dejavu_fonts
   ];
 
-  # Base firewall configuration
+  # Firewall configuration
+  # This is a restrictive firewall - only explicitly allowed ports are open
   networking.firewall = {
     enable = true;
+
+    # Allow ICMP ping for network diagnostics
     allowPing = true;
+
+    # Trusted interfaces (no firewall restrictions)
+    # - tailscale0: Tailscale VPN interface - trusted by design
     trustedInterfaces = [ "tailscale0" ];
+
+    # UDP Ports
+    # - Tailscale: Dynamic port for VPN mesh network (usually 41641)
     allowedUDPPorts = [ config.services.tailscale.port ];
+
+    # TCP Ports
+    # - 22: SSH for remote access (key-based auth only, see services.openssh)
     allowedTCPPorts = [ 22 ];
+
+    # Additional ports may be opened by:
+    # - Docker: modules/docker.nix (exposes container ports as needed)
+    # - Hyprland-control: modules/hyprland-control.nix (SSH on alternate port)
+    # - Services with openFirewall = true (like Tailscale above)
   };
 
   # Base user configuration

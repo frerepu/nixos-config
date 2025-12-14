@@ -1,0 +1,32 @@
+name: NixOS Configuration Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            experimental-features = nix-command flakes
+
+      - name: Setup Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Check flake validity
+        run: nix flake check --all-systems
+
+      - name: Build desktop configuration
+        run: nix build .#nixosConfigurations.desktop.config.system.build.toplevel
+
+      - name: Build mbp15 configuration
+        run: nix build .#nixosConfigurations.mbp15.config.system.build.toplevel

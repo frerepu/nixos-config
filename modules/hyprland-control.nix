@@ -67,6 +67,8 @@ in {
     environment.systemPackages = [ hyprctl-remote wtype-remote ];
 
     # Enable SSH server for Companion connections
+    # Note: Uses standard SSH port 22 (already open in firewall)
+    # No additional firewall rules needed
     services.openssh = {
       enable = true;
       settings = {
