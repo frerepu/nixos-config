@@ -66,7 +66,7 @@ The `flake.nix` contains a `mkHost` helper function that eliminates boilerplate 
 
 ### Current Hosts
 
-- **desktop**: Primary desktop system (hostname: `nixos`)
+- **desktop**: Primary desktop system (hostname: `nixos-desktop`)
   - Network interface: `enp4s0f0`
   - Includes Docker and Hyprland remote control service
   - High refresh rate monitor setup
