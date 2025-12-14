@@ -17,7 +17,7 @@
     settings = {
       # Common environment variables
       env = [
-        "XCURSOR_SIZE,24"
+        "XCURSOR_SIZE,22"
         "QT_QPA_PLATFORMTHEME,qt5ct"
       ];
 
