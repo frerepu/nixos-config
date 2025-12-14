@@ -55,9 +55,10 @@ in
     # File managers
     kitty
     nemo-with-extensions
-    xfce.thunar
-    xfce.thunar-archive-plugin
-    xfce.thunar-volman
+
+    # PDF and image viewers
+    zathura
+    imv
 
     # Development tools
     nodejs_20
@@ -166,4 +167,26 @@ in
   catppuccin.gtk = {
     icon.enable = true;
   };
+
+  # XDG MIME type associations
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      # PDF viewer
+      "application/pdf" = "org.pwmt.zathura.desktop";
+
+      # Image viewer
+      "image/png" = "imv.desktop";
+      "image/jpeg" = "imv.desktop";
+      "image/jpg" = "imv.desktop";
+      "image/gif" = "imv.desktop";
+      "image/webp" = "imv.desktop";
+      "image/bmp" = "imv.desktop";
+      "image/svg+xml" = "imv.desktop";
+    };
+  };
+
+  # Force overwrite existing mimeapps.list files
+  xdg.configFile."mimeapps.list".force = true;
+  xdg.dataFile."applications/mimeapps.list".force = true;
 }

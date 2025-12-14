@@ -95,7 +95,7 @@
       ];
       # Add these variable definitions
         "$terminal" = "kitty";
-        "$filemanger" = "thunar";
+        "$filemanager" = "thunar";
         "$menu" = "wofi --show drun";
         "$browser" = "flatpak run app.zen_browser.zen";
       # Universal keybindings are in binds.nix - imported via default.nix

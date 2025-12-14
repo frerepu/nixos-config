@@ -22,6 +22,14 @@
   services.flatpak.enable = true;
   services.onedrive.enable = true;
 
+  # File manager and thumbnail generation
+  programs.thunar.enable = true;
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+    thunar-volman
+  ];
+  services.tumbler.enable = true;
+
   # X11/Display server configuration
   services.xserver = {
     enable = true;
