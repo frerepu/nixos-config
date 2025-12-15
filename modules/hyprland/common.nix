@@ -18,7 +18,7 @@
       # Common environment variables
       env = [
         "XCURSOR_SIZE,16"
-        "QT_QPA_PLATFORMTHEME,qt5ct"
+        "QT_QPA_PLATFORMTHEME,kvantum"
       ];
 
       # Common input settings (can be overridden by host-specific)

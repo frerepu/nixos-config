@@ -36,6 +36,7 @@ in
     ./modules/gnome-disks.nix
     ./modules/spotify.nix
     ./modules/orca-slicer.nix
+    ./modules/qt.nix
   ];
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
