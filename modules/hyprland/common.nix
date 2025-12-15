@@ -116,6 +116,8 @@
         "float, title:^(branchdialog)$"
         "float, title:^(Confirm to replace files)$"
         "float, title:^(File Operation Progress)$"
+        # Transparency
+        "opacity 0.90 0.85, class:^(thunar)$"
       ];
     };
   };
