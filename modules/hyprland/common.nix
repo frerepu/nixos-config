@@ -118,6 +118,7 @@
         "float, title:^(File Operation Progress)$"
         # Transparency
         "opacity 0.90 0.85, class:^(thunar)$"
+        "opacity 0.90 0.85, class:^(info.mumble.Mumble)$"
       ];
     };
   };
