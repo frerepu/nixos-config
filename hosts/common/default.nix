@@ -147,11 +147,13 @@
 
     # UDP Ports
     # - Tailscale: Dynamic port for VPN mesh network (usually 41641)
-    allowedUDPPorts = [ config.services.tailscale.port ];
+    # - 64734: Mumble voice chat
+    allowedUDPPorts = [ config.services.tailscale.port 64734 ];
 
     # TCP Ports
     # - 22: SSH for remote access (key-based auth only, see services.openssh)
-    allowedTCPPorts = [ 22 ];
+    # - 64734: Mumble voice chat (TCP fallback)
+    allowedTCPPorts = [ 22 64734 ];
 
     # Additional ports may be opened by:
     # - Docker: modules/docker.nix (exposes container ports as needed)
