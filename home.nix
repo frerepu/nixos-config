@@ -35,6 +35,7 @@ in
     ./modules/unetbootin.nix
     ./modules/gnome-disks.nix
     ./modules/spotify.nix
+    ./modules/orca-slicer.nix
   ];
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
@@ -103,9 +104,6 @@ in
 
     # Cloud storage
     onedrivegui
-
-    # 3D Printing
-    orca-slicer
   ];
 
 
@@ -152,6 +150,7 @@ in
     shellAliases = personal.shellAliases;
     bashrcExtra = ''
       eval "$(starship init bash)"
+      fastfetch
     '';
   };
   home.pointerCursor = {
@@ -159,7 +158,7 @@ in
      x11.enable = true;
      package = pkgs.bibata-cursors;
      name = "Bibata-Modern-Ice";
-     size = 10;
+     size = 16;
    };
 
   gtk = {

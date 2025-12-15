@@ -26,6 +26,9 @@ in
       if [[ "$TERM" == "dumb" ]] || [[ ! -t 0 && ! -t 1 ]]; then
         export STARSHIP_LOG=error
       fi
+
+      # Display fastfetch on shell startup
+      fastfetch
     '';
   };
 }
