@@ -10,6 +10,7 @@
 
 {
   description = "My NixOS configurations";
+
   inputs = {
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager = {
@@ -22,14 +23,33 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
+
   outputs = { self, nixpkgs-unstable, home-manager, catppuccin, agenix, ... }@inputs:
     let
+      # System configuration
       system = "x86_64-linux";
       pkgs = nixpkgs-unstable.legacyPackages.${system};
+      lib = nixpkgs-unstable.lib;
+
+      # User configuration
+      username = "faelterman";
+
+      # Host definitions - add new hosts here
+      hosts = {
+        desktop = {
+          hostConfig = ./hosts/desktop/default.nix;
+          homeConfig = ./hosts/desktop/home.nix;
+        };
+        mbp15 = {
+          hostConfig = ./hosts/mbp15/default.nix;
+          homeConfig = ./hosts/mbp15/home.nix;
+        };
+      };
 
       # Helper function to create a NixOS host configuration
-      mkHost = { hostname, hostConfig, homeConfig }:
-        nixpkgs-unstable.lib.nixosSystem {
+      # Automatically integrates home-manager with the specified user
+      mkHost = { hostConfig, homeConfig }:
+        lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
@@ -42,7 +62,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = { inherit inputs; };
-                users.faelterman = { pkgs, ... }: {
+                users.${username} = {
                   imports = [
                     homeConfig
                     catppuccin.homeModules.catppuccin
@@ -63,29 +83,45 @@
             catppuccin.homeModules.catppuccin
           ];
         };
-    in {
-      nixosConfigurations = {
-        desktop = mkHost {
-          hostname = "desktop";
-          hostConfig = ./hosts/desktop/default.nix;
-          homeConfig = ./hosts/desktop/home.nix;
-        };
-        mbp15 = mkHost {
-          hostname = "mbp15";
-          hostConfig = ./hosts/mbp15/default.nix;
-          homeConfig = ./hosts/mbp15/home.nix;
-        };
-      };
 
-      # Standalone home-manager configurations
+      # Auto-generate homeConfigurations from host definitions
+      # Creates standalone home-manager configs for each host
+      mkHomeConfigurations = hosts:
+        lib.mapAttrs'
+          (hostname: config:
+            lib.nameValuePair
+              "${username}@${hostname}"
+              (mkHomeConfig { inherit (config) homeConfig; })
+          )
+          hosts;
+
+    in {
+      # NixOS system configurations
+      # Usage: sudo nixos-rebuild switch --flake .#desktop
+      nixosConfigurations = lib.mapAttrs (_: mkHost) hosts;
+
+      # Standalone home-manager configurations (auto-generated from hosts)
       # Usage: home-manager switch --flake .#faelterman@desktop
-      homeConfigurations = {
-        "faelterman@desktop" = mkHomeConfig {
-          homeConfig = ./hosts/desktop/home.nix;
-        };
-        "faelterman@mbp15" = mkHomeConfig {
-          homeConfig = ./hosts/mbp15/home.nix;
-        };
+      homeConfigurations = mkHomeConfigurations hosts;
+
+      # Formatter for 'nix fmt'
+      formatter.${system} = pkgs.nixpkgs-fmt;
+
+      # Development shell
+      # Usage: nix develop
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          nixpkgs-fmt
+          nil
+          home-manager.packages.${system}.home-manager
+        ];
+        shellHook = ''
+          echo "NixOS dotfiles development environment"
+          echo "Available commands:"
+          echo "  nixpkgs-fmt - Format nix files"
+          echo "  nil - Nix language server"
+          echo "  home-manager - Standalone home-manager"
+        '';
       };
     };
 }
