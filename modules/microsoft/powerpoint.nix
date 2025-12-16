@@ -11,6 +11,7 @@
     (writeScriptBin "powerpoint" ''
       #!${pkgs.bash}/bin/bash
       ${pkgs.chromium}/bin/chromium \
+        --user-data-dir="$HOME/.config/chromium-powerpoint" \
         --app=https://www.office.com/launch/powerpoint \
         --class=powerpoint-web
     '')
@@ -27,7 +28,7 @@
   };
 
   # Add icon for the application
-  home.file.".local/share/icons/powerpoint.png".source = pkgs.fetchurl {
+  home.file.".local/share/icons/hicolor/256x256/apps/powerpoint.png".source = pkgs.fetchurl {
     url = "https://powerpoint.office.com/pwa/icon.png";
     sha256 = "0p3kprnwrk81lpiysmj1ina1ww9hxa13hp8xp326fir9sxy9r1vy";
   };

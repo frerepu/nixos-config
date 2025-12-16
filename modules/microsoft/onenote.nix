@@ -11,6 +11,7 @@
     (writeScriptBin "onenote" ''
       #!${pkgs.bash}/bin/bash
       ${pkgs.chromium}/bin/chromium \
+        --user-data-dir="$HOME/.config/chromium-onenote" \
         --app=https://www.office.com/launch/onenote \
         --class=onenote-web
     '')
@@ -27,7 +28,7 @@
   };
 
   # Add icon for the application
-  home.file.".local/share/icons/onenote.png".source = pkgs.fetchurl {
+  home.file.".local/share/icons/hicolor/256x256/apps/onenote.png".source = pkgs.fetchurl {
     url = "https://www.onenote.com/pwa/icon.png";
     sha256 = "02n6dcjligrk0521dqr94pqjfbjclfqsvl9bfg1iml72bwqapkih";
   };

@@ -62,6 +62,9 @@ in
       tweaks = [ "rimless" ];
       variant = "mocha";
     })
+    hicolor-icon-theme
+    gtk3
+    glib
 
     # File managers
     kitty

@@ -11,6 +11,7 @@
     (writeScriptBin "outlook" ''
       #!${pkgs.bash}/bin/bash
       ${pkgs.chromium}/bin/chromium \
+        --user-data-dir="$HOME/.config/chromium-outlook" \
         --app=https://outlook.office.com/mail/ \
         --class=outlook-web
     '')
@@ -27,8 +28,8 @@
   };
 
   # Add icon for the application
-  home.file.".local/share/icons/outlook.png".source = pkgs.fetchurl {
+  home.file.".local/share/icons/hicolor/256x256/apps/outlook.png".source = pkgs.fetchurl {
     url = "https://outlook.office.com/mail/pwa/icon.png";
-    sha256 = "068p7fd2qziivwajgdc8cn3px9m8jws57l87r6xmjbh63gwdbw9a"; # You'll need to replace this with the actual hash
+    sha256 = "19g6h0mhjw95c4gwk47ag2ydxkkkxyall72zxa26p0nhkx87v079";
   };
 }

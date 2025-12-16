@@ -11,6 +11,7 @@
     (writeScriptBin "word" ''
       #!${pkgs.bash}/bin/bash
       ${pkgs.chromium}/bin/chromium \
+        --user-data-dir="$HOME/.config/chromium-word" \
         --app=https://www.office.com/launch/word \
         --class=word-web
     '')
@@ -27,8 +28,8 @@
   };
 
   # Add icon for the application
-  home.file.".local/share/icons/word.png".source = pkgs.fetchurl {
+  home.file.".local/share/icons/hicolor/256x256/apps/word.png".source = pkgs.fetchurl {
     url = "https://word.office.com/pwa/icon.png";
-    sha256 = "08a52gnj4hxnza0s2qc0cd7am7dwaa1zvmpg1qc74wsz644p7cmq"; # Run nix-prefetch-url to get the hash
+    sha256 = "08a52gnj4hxnza0s2qc0cd7am7dwaa1zvmpg1qc74wsz644p7cmq";
   };
 }

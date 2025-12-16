@@ -19,12 +19,17 @@
         esbenp.prettier-vscode
         ms-python.python
         github.copilot
-        anthropic.claude-code
         tailscale.vscode-tailscale
         catppuccin.catppuccin-vsc
         ms-azuretools.vscode-docker
         ms-vscode-remote.remote-ssh
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "claude-code";
+          publisher = "anthropic";
+          version = "2.0.65";
+          sha256 = "nHZCEEWEgBdxAzpLFkQsTwNPx3JxuwhgwxKgW8LJ450=";
+        }
         {
           name = "remote-ssh-edit";
           publisher = "ms-vscode-remote";

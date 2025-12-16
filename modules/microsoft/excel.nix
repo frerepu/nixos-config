@@ -11,6 +11,7 @@
     (writeScriptBin "excel" ''
       #!${pkgs.bash}/bin/bash
       ${pkgs.chromium}/bin/chromium \
+        --user-data-dir="$HOME/.config/chromium-excel" \
         --app=https://www.office.com/launch/excel \
         --class=excel-web
     '')
@@ -27,8 +28,8 @@
   };
 
   # Add icon for the application
-  home.file.".local/share/icons/excel.png".source = pkgs.fetchurl {
+  home.file.".local/share/icons/hicolor/256x256/apps/excel.png".source = pkgs.fetchurl {
     url = "https://excel.office.com/pwa/icon.png";
-    sha256 = "1wrybzlkdcya721cxn67zs17xq944ayh5rjjpssyp338rhkqdrdq"; # Run nix-prefetch-url to get the hash
+    sha256 = "1wrybzlkdcya721cxn67zs17xq944ayh5rjjpssyp338rhkqdrdq";
   };
 }
