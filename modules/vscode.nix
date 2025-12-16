@@ -23,6 +23,7 @@
         catppuccin.catppuccin-vsc
         ms-azuretools.vscode-docker
         ms-vscode-remote.remote-ssh
+        ms-vscode-remote.remote-containers
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "claude-code";
