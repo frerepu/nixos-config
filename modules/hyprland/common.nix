@@ -117,6 +117,8 @@
         "float, title:^(Confirm to replace files)$"
         "float, title:^(File Operation Progress)$"
         # Transparency
+        "opacity 0.80 0.80, class:^(kitty)$"
+        "opacity 0.80 0.80, class:^(Code)$"
         "opacity 0.90 0.85, class:^(thunar)$"
         "opacity 0.90 0.85, class:^(info.mumble.Mumble)$"
       ];

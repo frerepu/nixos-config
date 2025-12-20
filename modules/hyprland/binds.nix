@@ -15,6 +15,7 @@
       "$mainMod, Return, exec, $terminal"
       "$mainMod, C, killactive, "
       "$mainMod, M, exit,"
+      "$mainMod SHIFT, R, exec, hyprctl reload"
       "$mainMod, E, exec, $filemanager"
       "$mainMod, B, exec, $browser"
       "$mainMod, F, togglefloating,"
