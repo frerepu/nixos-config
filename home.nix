@@ -36,6 +36,7 @@ in
     ./modules/gnome-disks.nix
     ./modules/spotify.nix
     ./modules/whatsapp.nix
+    ./modules/kdeconnect.nix
     ./modules/orca-slicer.nix
     ./modules/qt.nix
   ];

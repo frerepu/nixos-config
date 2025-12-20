@@ -95,4 +95,16 @@
   };
 
   environment.pathsToLink = [ "/share/wayland-sessions" ];
+
+  # KDE Connect firewall configuration
+  # Reference: https://nixos.wiki/wiki/KDE_Connect
+  # KDE Connect uses TCP/UDP ports 1714-1764 for device discovery and communication
+  networking.firewall = {
+    allowedTCPPortRanges = [
+      { from = 1714; to = 1764; }  # KDE Connect
+    ];
+    allowedUDPPortRanges = [
+      { from = 1714; to = 1764; }  # KDE Connect
+    ];
+  };
 }
