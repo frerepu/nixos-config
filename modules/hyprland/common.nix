@@ -121,6 +121,7 @@
         "opacity 0.80 0.80, class:^(code)$"
         "opacity 0.90 0.85, class:^(thunar)$"
         "opacity 0.90 0.85, class:^(info.mumble.Mumble)$"
+        "opacity 0.90 0.85, class:^(org.kde.kdeconnect.app)$"
       ];
     };
   };
