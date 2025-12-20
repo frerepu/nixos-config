@@ -58,6 +58,19 @@
 
   security.pam.services.hyprlock = {};
 
+  # Hardware graphics acceleration for AMD GPU
+  # Required for video decoding (scrcpy, video playback, etc.)
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;  # For 32-bit applications
+    extraPackages = with pkgs; [
+      # AMD Radeon video acceleration
+      mesa               # Mesa 3D graphics drivers
+      libvdpau-va-gl     # VDPAU driver with VA-API backend
+      libva-vdpau-driver # VA-API support for VDPAU
+    ];
+  };
+
   # XDG Portal configuration
   xdg.portal = {
     enable = true;
